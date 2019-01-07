@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/04 16:38:40 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/07 17:18:01 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -90,8 +90,8 @@ make_libft:
 
 $(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
 	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
-#	@$(CC) $(CFLAGS) $(OBJ) -L./libft/ -lft -L./libmlxji/ -lmlxji -L ./minilibx/ -I ./minilibx/ -lmlx -framework OpenGL -framework AppKit -o $(NAME) #A MODIFIER
-	@gcc $(MEMFLAGS) ./srcs_fdf/main4.c ./minilibx_macos/libmlx.a ./libft/libft.a -framework OpenGL -framework AppKit -I libft/includes $(INC) -o $(NAME) #EN ATTENDANT
+#	gcc -I ./minilibx_macos/mlx.h srcs_fractol/main_fractol.c ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit # FONCTIONNEL ? A MODIFIER
+#	@gcc $(MEMFLAGS) $(OBJ) ./minilibx_macos/libmlx.a ./libft/libft.a -framework OpenGL -framework AppKit -I libft/includes $(INC) -o $(NAME) #NON FONCTIONNEL
 	@echo "$(_ORANGE)| ->		$(NAME):" "$(_STOP)|\033[42m     $(BOLD)L O A D I N G$(R_BOLD)     $(_STOP)|" #| pv -qL 15
 	@echo "		$(_ORANGE)$(BLINK)100%\n$(R_BLINK)$(_STOP)"
 #	@sleep 1.5
