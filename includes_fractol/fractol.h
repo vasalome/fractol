@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 18:10:10 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 19:50:41 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,6 +26,10 @@
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+# define KEY_RESET 29
+# define KEY_ESC 53
+# define KEY_ITE_PLUS 22
+# define KEY_ITE_MOINS 23
 
 # define MOUSE_ZOOM_IN 5
 # define MOUSE_ZOOM_OUT 4
@@ -35,6 +39,9 @@ typedef struct  s_fractol
     float       nb_iter;
     void        *mlx;
     void        *win;
+    intmax_t    x;
+    intmax_t    y;
+    intmax_t    zoom;
 }               t_fractol;
 
 typedef struct  s_coord
@@ -50,6 +57,9 @@ typedef struct  s_coord
     double      tmp;
 }               t_coord;
 
-
+void    zoom_in(t_fractol *data);
+void    zoom_out(t_fractol *data);
+void    key_move(int key, t_fractol *move);
+int     get_key(int key, t_fractol *data);
 
 #endif

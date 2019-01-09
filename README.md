@@ -10,23 +10,27 @@ mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * z_r * 256 * 256 * 256 / iteration_max
 
 
 Keycode :
-w : 13
-a : 0
-s : 1
-d : 2
+key w : 13
+key a : 0
+key s : 1
+key d : 2
 
-haut : 126
-bas : 125
-gauche : 123
-droite : 124
+key haut : 126
+key bas : 125
+key gauche : 123
+key droite : 124
 
-e : 14
-q : 12
+key e : 14
+key q : 12
 
-+ : 69
-- : 78
+key + : 69
+key - : 78
 
-esc : 53
+key esc : 53
+
+key 0 : 29
+key 5 : 23
+key 6 : 22
 
 Mandelbrot
 c_r = x / zoom + x1;

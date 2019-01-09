@@ -6,37 +6,12 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/08 18:10:13 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 19:50:41 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "../minilibx_macos/mlx.h"
-//#include "../libft/includes/libft.h"
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct  s_fractol
-{
-    float       nb_iter;
-    void        *mlx;
-    void        *win;
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
-}               t_fractol;
-
-/*
-typedef struct  s_coord
-{
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
-}               t_coord;
-*/
+#include "../includes_fractol/fractol.h"
 
 void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
 {
@@ -44,11 +19,11 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
     float       x2 = 2;
     float       y1 = -2;
     float       y2 = 2;
-    float       zoom = 200;
+    float       screen = 200;
     int         iteration_max = iteration;
 
-    float       image_x = (x2 - x1) * zoom;
-    float       image_y = (y2 - y1) * zoom;
+    float       image_x = (x2 - x1) * screen;
+    float       image_y = (y2 - y1) * screen;
 
     float       c_r = 0;
     float       c_i = 0;
@@ -67,8 +42,8 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
         {
             c_r = -0.75;
             c_i = -0.14;
-            z_r = x / zoom + x1;
-            z_i = y / zoom + y1;
+            z_r = x / screen + x1;
+            z_i = y / screen + y1;
             i = 0;
             while (((z_r * z_r + z_i * z_i)) < 4 && (i < iteration_max))
             {
@@ -80,36 +55,11 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
             if (i == iteration_max)
                 mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * 256 * 256 / iteration_max));
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * 256 * 256 * z_r / iteration_max));
             y++;
         }
         x++;
     }
-}
-
-int     get_key(int keycode, t_fractol *data)
-{
-    static t_fractol    *data_key = NULL;
-
-    if (data_key == NULL)
-        data_key = data;
-    if (keycode == 53)
-        exit(0);
-    else if (keycode == 69)
-        data_key->nb_iter += 1;
-    else if (keycode == 78)
-        data_key->nb_iter -= 1;
-    else if (keycode == 126)
-        data_key->nb_iter += 1;
-    else if (keycode == 125)
-        data_key->nb_iter += 1;
-    else if (keycode == 123)
-        data_key->nb_iter += 1;
-    else if (keycode == 124)
-        data_key->nb_iter += 1;
-    fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    printf("keycode : %d\n", keycode);
-    return (0);
 }
 
 int     main(void)
