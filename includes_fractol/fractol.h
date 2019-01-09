@@ -20,33 +20,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-# define ZOOM_IN 5
-# define ZOOM_OUT 4
-# define KEY_UP
-# define KEY_DOWN
-# define KEY_LEFT
-# define KEY_RIGHT
+# define KEY_ZOOM_IN 69
+# define KEY_ZOOM_OUT 78
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+
+# define MOUSE_ZOOM_IN 5
+# define MOUSE_ZOOM_OUT 4
 
 typedef struct  s_fractol
 {
     float       nb_iter;
     void        *mlx;
     void        *win;
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
 }               t_fractol;
 
-/*
 typedef struct  s_coord
 {
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
+    double      x1;
+    double      x2;
+    double      y1;
+    double      y2;
+    double      c_r;
+    double      c_i;
+    double      z_r;
+    double      z_i;
+    double      tmp;
 }               t_coord;
-*/
 
 
 

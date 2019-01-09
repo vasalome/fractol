@@ -96,35 +96,18 @@ int     get_key(int keycode, t_fractol *data)
     if (keycode == 53)
         exit(0);
     else if (keycode == 69)
-    {
         data_key->nb_iter += 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
     else if (keycode == 78)
-    {
         data_key->nb_iter -= 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
     else if (keycode == 126)
-    {
         data_key->nb_iter += 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
     else if (keycode == 125)
-    {
         data_key->nb_iter += 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
     else if (keycode == 123)
-    {
         data_key->nb_iter += 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
     else if (keycode == 124)
-    {
         data_key->nb_iter += 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
-    }
+    fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     printf("keycode : %d\n", keycode);
     return (0);
 }
