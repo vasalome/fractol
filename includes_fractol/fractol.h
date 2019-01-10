@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 13:22:12 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 18:45:09 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,6 +33,9 @@
 
 # define MOUSE_ZOOM_IN 5
 # define MOUSE_ZOOM_OUT 4
+
+# define WIN_WIDTH 1250
+# define WIN_LENGHT 1250
 
 typedef struct  s_fractol
 {
