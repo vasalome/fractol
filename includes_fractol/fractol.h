@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 19:50:41 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 13:22:12 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,8 @@ typedef struct  s_fractol
     intmax_t    x;
     intmax_t    y;
     intmax_t    zoom;
+    int         w_width;
+    int         w_lenght;
 }               t_fractol;
 
 typedef struct  s_coord
@@ -60,6 +62,9 @@ typedef struct  s_coord
 void    zoom_in(t_fractol *data);
 void    zoom_out(t_fractol *data);
 void    key_move(int key, t_fractol *move);
+void	key_reset(t_fractol *reset);
 int     get_key(int key, t_fractol *data);
+
+void    ft_fractol(void *mlx_ptr, void *win_ptr, float iteration);
 
 #endif

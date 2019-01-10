@@ -6,20 +6,20 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 19:50:41 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 18:39:37 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
 
-void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
+void    ft_fractol(void *mlx_ptr, void *win_ptr, float iteration)
 {
     float       x1 = -2;
     float       x2 = 2;
     float       y1 = -2;
     float       y2 = 2;
-    float       screen = 200;
+    float       screen = 150;
     int         iteration_max = iteration;
 
     float       image_x = (x2 - x1) * screen;
@@ -67,9 +67,9 @@ int     main(void)
     t_fractol   data;
 
     data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, 1250, 1250, "MANGE MA FRACTALE");
+    data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_LENGHT, "MANGE MA FRACTALE");
     data.nb_iter = 100;
-    fractol(data.mlx, data.win, data.nb_iter);
+    ft_fractol(data.mlx, data.win, data.nb_iter);
     get_key(0, &data);
 //    mlx_key_hook(data.win, get_key, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
