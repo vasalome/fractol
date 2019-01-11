@@ -47,6 +47,7 @@ typedef struct  s_fractol
     intmax_t    zoom;
     int         w_width;
     int         w_lenght;
+    void        (*c_fractol)();
 }               t_fractol;
 
 typedef struct  s_coord
