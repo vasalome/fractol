@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/01/07 17:18:01 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/11 18:14:37 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -80,7 +80,7 @@ all:
 	@mkdir -p $(OBJ_DIR)
 	@$(MAKE) $(NAME) --no-print-directory
 
-make_libft:
+#make_libft:
 	@make -C libft/
 
 #make_mlx:
@@ -96,16 +96,14 @@ $(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
 	@echo "		$(_ORANGE)$(BLINK)100%\n$(R_BLINK)$(_STOP)"
 #	@sleep 1.5
 #	@clear
-#	@echo "\n	$(_ORANGE)------------------------------------------------------------------"
-#	@echo "	|>								<|"
-#	@echo "	|>	     _/\/\/\/\/\/\__/\/\/\/\/\____/\/\/\/\/\/\_		<|"
-#	@echo "	|>	    _/\/\__________/\/\____/\/\__/\/\_________ 		<|"
-#	@echo "	|>	   _/\/\/\/\/\____/\/\____/\/\__/\/\/\/\/\___  		<|"
-#	@echo "	|>	  _/\/\__________/\/\____/\/\__/\/\_________   		<|"
-#	@echo "	|>	 _/\/\__________/\/\/\/\/\____/\/\_________    		<|"
-	@echo "	|>	_________________________________$(_STOP)$(BLINK)$(_YELLOW)is ready$(R_BLINK)$(_ORANGE)_		<|"
-#	@echo "	|>								<|"
-#	@echo "	-----------------------------------------------------------------$(_STOP)\n"
+#	@echo "\n$(_ORANGE)		______________________"
+#	@echo "	|>							<|"
+#	@echo "	|>	┌─┐┬─┐┌─┐┌─┐┌┬┐┌─┐┬ 	<|"
+#	@echo "	|>	├┤ ├┬┘├─┤│   │ │ ││  	<|"
+#	@echo "	|>	└  ┴└─┴ ┴└─┘ ┴ └─┘┴─┘	<|"
+#	@echo "	|>							<|"
+	@echo "	__________________$(_STOP)$(BLINK)$(_YELLOW)is ready$(R_BLINK)$(_ORANGE)_"
+#	@echo "	|>							<|$(_STOP)\n"
 
 clean:
 	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"

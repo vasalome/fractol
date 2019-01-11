@@ -6,61 +6,12 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 18:44:59 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 14:29:04 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
-
-void    ft_fractol(void *mlx_ptr, void *win_ptr, float iteration)
-{
-    float       x1 = -2;
-    float       x2 = 2;
-    float       y1 = -2;
-    float       y2 = 2;
-    float       screen = 150;
-    int         iteration_max = iteration;
-
-    float       image_x = (x2 - x1) * screen;
-    float       image_y = (y2 - y1) * screen;
-
-    float       c_r = 0;
-    float       c_i = 0;
-    float       z_r = 0;
-    float       z_i = 0;
-    float       i = 0;
-    float       tmp = 0;
-
-    float       x = 0;
-    float       y = 0;
-
-    while (x < image_x)
-    {
-        y = 0;
-        while (y < image_y)
-        {
-            c_r = -0.75;
-            c_i = -0.14;
-            z_r = x / screen + x1;
-            z_i = y / screen + y1;
-            i = 0;
-            while (((z_r * z_r + z_i * z_i)) < 4 && (i < iteration_max))
-            {
-                tmp = z_r;
-                z_r = z_r * z_r - z_i * z_i + c_r;
-                z_i = 2 * z_i * tmp + c_i;
-                i++;
-            }
-            if (i == iteration_max)
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
-            else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * 256 * 256 * z_r / iteration_max));
-            y++;
-        }
-        x++;
-    }
-}
 
 int     ft_choose(int argc, char **argv, t_fractol data)
 {
@@ -70,19 +21,25 @@ int     ft_choose(int argc, char **argv, t_fractol data)
     while (i < argc - 1)
     {
         if (strcmp(argv[i], "1") == 0)
-            data.c_fractol = mandelbrot;
+            data->c_fractol = mandelbrot;
             FONCTION POUR LA FAIRE
         if (strcmp(argv[i], "2") == 0)
-            data.c_fractol = julia;
+            data->c_fractol = julia;
         if (strcmp(argv[i], "3") == 0)
-            data.c_fractol = burningship;
+            data->c_fractol = julia_2;
         if (strcmp(argv[i], "4") == 0)
-            data.c_fractol = tapis_sierpinski;
+            data->c_fractol = burningship;
         if (strcmp(argv[i], "5") == 0)
-            data.c_fractol = julia;
+            data->c_fractol = tapis_sierpinski;
         if (strcmp(argv[i], "6") == 0)
-            data.c_fractol = random;
-        if (data.c_fractol == NULL)
+            data->c_fractol = triangle_sierpinski;
+        if (strcmp(argv[i], "7") == 0)
+            data->c_fractol = circulaire; //fractale circulaire ou remplacer par fougere
+        if (strcmp(argv[i], "8") == 0)
+            data->c_fractol = random; //ajouter valeur random
+        if (strcmp(argv[i], "9") == 0)
+            data->c_fractol = glitch; //ajouter valeur et couleur random
+        if (data->c_fractol == NULL)
             ERREUR ARGUMENT
         i++;
     }
