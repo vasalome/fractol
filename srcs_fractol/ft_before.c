@@ -55,8 +55,8 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
         y = 0;
         while (y < image_y)
         {
-            c_r = -0.75;//randomize;
-            c_i = -0.14;//randomize2;
+            c_r = -1.762;//-0.75;//randomize;
+            c_i = -0.028 * i;//-0.14;//randomize2;
             z_r = x / zoom + x1;
             z_i = y / zoom + y1;
             i = 0;
@@ -70,7 +70,7 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
             if (i == iteration_max)
                 mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * z_i * i * i * 256 * 256 * z_r / i + z_i));
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * 256 * 256 * 256 / iteration_max));
             y++;
         }
         x++;

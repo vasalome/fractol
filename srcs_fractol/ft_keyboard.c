@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 18:46:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 14:28:56 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/12 18:06:18 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,17 +15,17 @@
 
 void	zoom_in(t_fractol *data)
 {
-	data->zoom += data->zoom * 1.1;
-	data->x += data->x * 1.1;
-	data->y += data->y * 1.1;
+	data->zoom += data->zoom * 1.2;
+	data->x += data->x * 1.2;
+	data->y += data->y * 1.2;
 }
 
 void	zoom_out(t_fractol *data)
 {
-	if (data->zoom / 1.1 < 10)
+	if (data->zoom / 1.2 < 10)
 		return ;
-	data->zoom += data->zoom / 1.1;
-	data->x += data->x / 1.1;
+	data->zoom += data->zoom / 1.2;
+	data->x += data->x / 1.2;
 	data->y += data->y / 1.1;
 }
 
