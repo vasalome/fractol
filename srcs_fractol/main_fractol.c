@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:06:26 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/24 18:59:07 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,7 @@ int     ft_choose(int argc, char **argv, t_fractol data)
     {
         if (strcmp(argv[i], "1") == 0)
             data->c_fractol = mandelbrot;
-            //FONCTION POUR LA FAIRE
+            // FONCTION POUR LA FAIRE
         if (strcmp(argv[i], "2") == 0)
             data->c_fractol = julia;
         if (strcmp(argv[i], "3") == 0)
@@ -34,11 +34,11 @@ int     ft_choose(int argc, char **argv, t_fractol data)
         if (strcmp(argv[i], "6") == 0)
             data->c_fractol = triangle_sierpinski;
         if (strcmp(argv[i], "7") == 0)
-            data->c_fractol = circulaire; //fractale circulaire ou remplacer par fougere
+            data->c_fractol = circulaire; // fractale circulaire ou remplacer par fougere
         if (strcmp(argv[i], "8") == 0)
-            data->c_fractol = random; //ajouter valeur random
+            data->c_fractol = random; // ajouter valeur random
         if (strcmp(argv[i], "9") == 0)
-            data->c_fractol = glitch; //ajouter valeur et couleur random
+            data->c_fractol = glitch; // ajouter valeur et couleur random
         if (data->c_fractol == NULL)
             //ERREUR ARGUMENT
         i++;
@@ -50,7 +50,7 @@ int     main(int argc, char **argv)
     t_fractol   data;
 
     if (argc == 1)
-        //FONCTION USAGE 
+        // FONCTION USAGE 
     else
         ft_choose(argc, **argv, data);
 
