@@ -58,10 +58,7 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
 
     float       x = 0;
     float       y = 0;
-
-    int         randomize = rand() % 2;
-    int         randomize2 = rand() % 2;
-
+    
     while (x < image_x)
     {
         y = 0;
