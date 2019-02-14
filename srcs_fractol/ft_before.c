@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <pthread.h>
 
 typedef struct  s_fractol
 {
@@ -25,7 +26,7 @@ typedef struct  s_coord
 }               t_coord;
 */
 
-int color_rgb(int i)
+int     color_rgb_orange(int i)
 {
     int r;
     int g;
@@ -35,6 +36,35 @@ int color_rgb(int i)
     g = (i * 8) % 256;
     b = (i * 4) % 256;
     return (r * 65536 + g * 256 + b);
+}
+
+int     color_rgb_vert(int i)
+{
+    int r;
+    int g;
+    int b;
+
+    r = (i * 16) % 256;
+    g = (i * 8) % 256;
+    b = (i * 4) % 256;
+    return (g * 65536 + r * 256 + b);
+}
+
+int     color_rgb_bleu(int i)
+{
+    int r;
+    int g;
+    int b;
+
+    r = (i * 16) % 256;
+    g = (i * 8) % 256;
+    b = (i * 4) % 256;
+    return (b * 65536 + g * 256 + r);
+}
+
+int    stupid_color(int i, float z_i, float z_r, int iteration_max)
+{
+    return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i );
 }
 
 void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
@@ -79,7 +109,7 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
             if (i == iteration_max)
                 mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb(i));
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_orange(i));
             y++;
         }
         x++;
@@ -128,15 +158,21 @@ int     get_key(int keycode, t_fractol *data)
     return (0);
 }
 
+int     get_mouse()
+{
+    return (0);
+}
+
 int     main(void)
 {
     t_fractol   data;
 
     data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, 1250, 1250, "MANGE MA FRACTALE");
+    data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     data.nb_iter = 100;
     fractol(data.mlx, data.win, data.nb_iter);
     get_key(0, &data);
+    get_mouse();
 //    mlx_key_hook(data.win, get_key, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
     mlx_loop(data.mlx);
