@@ -7,87 +7,68 @@
 
 typedef struct  s_fractol
 {
-    float       nb_iter;
+    double      nb_iter;
     void        *mlx;
     void        *win;
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
+    intmax_t    x1;
+    intmax_t    x2;
+    intmax_t    y1;
+    intmax_t    y2;
+    int         color;
 }               t_fractol;
 
-/*
+
 typedef struct  s_coord
 {
-    float       x1;
-    float       x2;
-    float       y1;
-    float       y2;
+    double      x1;
+    double      x2;
+    double      y1;
+    double      y2;
 }               t_coord;
-*/
 
-int     color_rgb_orange(int i)
+int     color_rgb_get_key(int i, double z_i)//, t_fractol *choose) // choix de couleur
 {
     int r;
     int g;
     int b;
 
-    r = (i * 16) % 256;
-    g = (i * 8) % 256;
-    b = (i * 4) % 256;
-    return (r * 65536 + g * 256 + b);
-}
-
-int     color_rgb_vert(int i)
-{
-    int r;
-    int g;
-    int b;
+    int color = 3; // A SUPPRIMER et inserer dans une structure / get_key
 
     r = (i * 16) % 256;
     g = (i * 8) % 256;
     b = (i * 4) % 256;
-    return (g * 65536 + r * 256 + b);
-}
-
-int     color_rgb_bleu(int i)
-{
-    int r;
-    int g;
-    int b;
-
-    r = (i * 16) % 256;
-    g = (i * 8) % 256;
-    b = (i * 4) % 256;
-    return (b * 65536 + g * 256 + r);
-}
-
-int    stupid_color(int i, float z_i, float z_r, int iteration_max)
-{
-    return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i );
+    if (color == 1) // orange
+        return (r * 65536 + g * 256 + b);
+    if (color == 2) // vert
+        return (g * 65536 + r * 256 + b);
+    if (color == 3) // bleu
+        return (b * 65536 + g * 256 + r);
+    if (color == 4) // stupid color
+        return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i);
+    return (0);
 }
 
 void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
 {
-    float       x1 = -2;
-    float       x2 = 2;
-    float       y1 = -2;
-    float       y2 = 2;
-    float       zoom = 200;
+    double      x1 = -2;
+    double      x2 = 2;
+    double      y1 = -2;
+    double      y2 = 2;
+    intmax_t    zoom = 200;
     int         iteration_max = iteration;
 
-    float       image_x = (x2 - x1) * zoom;
-    float       image_y = (y2 - y1) * zoom;
+    double      image_x = (x2 - x1) * zoom;
+    double      image_y = (y2 - y1) * zoom;
 
-    float       c_r = 0;
-    float       c_i = 0;
-    float       z_r = 0;
-    float       z_i = 0;
-    float       i = 0;
-    float       tmp = 0;
+    double      c_r = 0;
+    double      c_i = 0;
+    double      z_r = 0;
+    double      z_i = 0;
+    double      i = 0;
+    double      tmp = 0;
 
-    float       x = 0;
-    float       y = 0;
+    double      x = 0;
+    double      y = 0;
     
     while (x < image_x)
     {
@@ -109,7 +90,7 @@ void    fractol(void *mlx_ptr, void *win_ptr, float iteration)
             if (i == iteration_max)
                 mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_orange(i));
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_get_key(i, z_i));
             y++;
         }
         x++;

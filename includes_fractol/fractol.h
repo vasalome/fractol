@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/12 18:06:31 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/18 21:28:00 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@
 
 typedef struct  s_fractol
 {
-    float       nb_iter;
+    int       nb_iter;
     void        *mlx;
     void        *win;
     intmax_t    x;
