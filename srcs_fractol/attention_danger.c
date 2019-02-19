@@ -54,7 +54,7 @@ int     color_rgb_get_key(int i, double z_i)//, t_fractol *choose) // choix de c
     return (0);
 }
 
-void    fractol(void *mlx_ptr, void *win_ptr, double iteration)
+void    fractol(t_fractol data)
 {
     double      x1 = -2;
     double      x2 = 2;
@@ -95,9 +95,9 @@ void    fractol(void *mlx_ptr, void *win_ptr, double iteration)
                 i++;
             }
             if (i == iteration_max)
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
+                mlx_pixel_put(data.mlx, data.win, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_get_key(i, z_i));
+                mlx_pixel_put(data.mlx, data.win, x, y, color_rgb_get_key(i, z_i));
             y++;
         }
         x++;
