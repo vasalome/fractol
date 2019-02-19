@@ -4,31 +4,57 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include "../includes_fractol/fractol.h"
 
-int     color_rgb_get_key(int i, double z_i, t_fractol *color)//, t_fractol *choose) // choix de couleur
+typedef struct  s_fractol
+{
+    double      nb_iter;
+    void        *mlx;
+    void        *win;
+    intmax_t    x1;
+    intmax_t    x2;
+    intmax_t    y1;
+    intmax_t    y2;
+    int         color;
+}               t_fractol;
+
+
+typedef struct  s_coord
+{
+    double      x1;
+    double      x2;
+    double      y1;
+    double      y2;
+//    double      c_r;
+//    double      c_i;
+//    double      z_r;
+//    double      z_i;
+//    double      tmp;
+}               t_coord;
+
+int     color_rgb_get_key(int i, double z_i)//, t_fractol *choose) // choix de couleur
 {
     int r;
     int g;
     int b;
+    t_fractol *col_key;
 
-    //int color = 3; // A SUPPRIMER et inserer dans une structure / get_key
+    int color = 3; // A SUPPRIMER et inserer dans une structure / get_key
 
     r = (i * 16) % 256;
     g = (i * 8) % 256;
     b = (i * 4) % 256;
-    if (color->color == 1) // orange
+    if (color == 1) // orange
         return (r * 65536 + g * 256 + b);
-    if (color->color == 2) // vert
+    if (color == 2) // vert
         return (g * 65536 + r * 256 + b);
-    if (color->color == 3) // bleu
+    if (color == 3) // bleu
         return (b * 65536 + g * 256 + r);
-    if (color->color == 4) // stupid color
+    if (color == 4) // stupid color
         return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i);
-    return (r * 65536 + g * 256 + b);
+    return (0);
 }
 
-void    fractol(void *mlx_ptr, void *win_ptr, double iteration, t_fractol *data)
+void    fractol(void *mlx_ptr, void *win_ptr, double iteration)
 {
     double      x1 = -2;
     double      x2 = 2;
@@ -71,7 +97,7 @@ void    fractol(void *mlx_ptr, void *win_ptr, double iteration, t_fractol *data)
             if (i == iteration_max)
                 mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_get_key(i, z_i, data));
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, color_rgb_get_key(i, z_i));
             y++;
         }
         x++;
@@ -89,37 +115,37 @@ int     get_key(int keycode, t_fractol *data)
     else if (keycode == 69)
     {
         data_key->nb_iter += 20;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
     else if (keycode == 78)
     {
         data_key->nb_iter -= 20;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
-    else if (keycode == KEY_UP)
+    else if (keycode == 126)
     {
         data_key->color = 4;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
-    else if (keycode == KEY_DOWN)
+    else if (keycode == 125)
     {
         data_key->color = 2;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
-    else if (keycode == KEY_LEFT)
+    else if (keycode == 123)
     {
         data_key->color = 1;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
-    else if (keycode == KEY_RIGHT)
+    else if (keycode == 124)
     {
         data_key->color = 3;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
-    else if (keycode == KEY_RESET)
+    else if (keycode == 15)
     {
         data_key->nb_iter = 100;
-        fractol(data_key->mlx, data_key->win, data_key->nb_iter, data);
+        fractol(data_key->mlx, data_key->win, data_key->nb_iter);
     }
     printf("keycode : %d\n", keycode);
     return (0);
@@ -147,7 +173,7 @@ int     main(int argc, char **argv)
     data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     data.nb_iter = 100;
-    fractol(data.mlx, data.win, data.nb_iter, &data);
+    fractol(data.mlx, data.win, data.nb_iter);
     get_key(0, &data);
     get_mouse();
 //    border_info(&data);

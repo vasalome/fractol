@@ -2,14 +2,8 @@ http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
 http://www.relativitybook.com/CoolStuff/julia_set.html
 
 
-gcc -I ./minilibx_macos/mlx.h srcs_fractol/main_fractol.c ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
-
 origin:
-gcc -I ./minilibx_macos/mlx.h srcs_fractol/ft_before.c ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
-
-ligne de couleur chelou qui bouge wesh
-mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * z_i * 256 * 256 * 256 / iteration_max));
-mlx_pixel_put(mlx_ptr, win_ptr, x, y, (i * z_r * 256 * 256 * 256 / iteration_max));
+gcc -I ./minilibx_macos/mlx.h srcs_fractol/ft_before.c ./includes_fractol/fractol.h ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
 
 Keycode :
