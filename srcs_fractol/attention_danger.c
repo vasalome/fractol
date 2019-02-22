@@ -47,12 +47,12 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
     b = (i * 4) % 256;
     if (data->color == 1) // orange
     {
-        printf("\x1b[31mcode erreur: color orange - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+//        printf("\x1b[31mcode erreur: color orange - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
         return (r * 65536 + g * 256 + b);
     }
     if (data->color == 2) // vert
     {
-        printf("\x1b[31mcode erreur: color vert - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+//        printf("\x1b[31mcode erreur: color vert - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
         return (g * 65536 + r * 256 + b);
     }
     if (data->color == 3) // bleu
@@ -62,7 +62,7 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
     }
     if (data->color == 4) // stupid color
     {
-        printf("\x1b[31mcode erreur: color stupid - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+//        printf("\x1b[31mcode erreur: color stupid - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
         return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i);
     }
 //
@@ -118,9 +118,19 @@ void    fractol(t_fractol *data)
                 i++;
             }
             if (i == iteration_max)
+            {
+                //
+//                printf("\x1b[31mcode erreur: couleur black - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+                //
                 mlx_pixel_put(data->mlx, data->win, x, y, 0);
+            }
             else
+            {
+                //
+//                printf("\x1b[31mcode erreur: couleur diffuse - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+                //
                 mlx_pixel_put(data->mlx, data->win, x, y, color_rgb_get_key(i, data, z_i));
+            }
             y++;
         }
         x++;
@@ -145,38 +155,20 @@ int     get_key(int keycode, t_fractol *data)
         dprintf(1, "toto est la\n");
         data->nb_iter += 20;
         dprintf(1, "toto a fini\n");
-        fractol(data);
     }
     else if (keycode == 78)
-    {
         data->nb_iter -= 20;
-        fractol(data);
-    }
     else if (keycode == 126)
-    {
         data->color = 4;
-        fractol(data);
-    }
     else if (keycode == 125)
-    {
         data->color = 2;
-        fractol(data);
-    }
     else if (keycode == 123)
-    {
         data->color = 1;
-        fractol(data);
-    }
     else if (keycode == 124)
-    {
         data->color = 3;
-        fractol(data);
-    }
     else if (keycode == 15)
-    {
         data->nb_iter = 100;
-        fractol(data);
-    }
+    fractol(data);
     printf("keycode : %d\n", keycode);
 //
     printf("\x1b[35mcode erreur: get_mouse B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
@@ -209,10 +201,11 @@ int     main(int argc, char **argv)
 {
     t_fractol   data;
 
+//    data.name = argv[1];
     data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     data.nb_iter = 100;
-    data.color = 3;
+    data.color = 1;
     data.x1 = -2;
     data.x2 = 2;
     data.y1 = -2;
