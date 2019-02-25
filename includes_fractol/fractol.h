@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/22 22:22:20 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/25 16:55:25 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,23 +48,14 @@ typedef struct  s_fractol
     intmax_t    x2;
     intmax_t    y1;
     intmax_t    y2;
-    intmax_t    zoom;
-    int         color;
-}               t_fractol;
-
-
-typedef struct  s_coord
-{
-    double      x1;
-    double      x2;
-    double      y1;
-    double      y2;
 //    double      c_r;
 //    double      c_i;
 //    double      z_r;
 //    double      z_i;
 //    double      tmp;
-}               t_coord;
+    intmax_t    zoom;
+    int         color;
+}               t_fractol;
 
 /*
 typedef struct  s_fractol
