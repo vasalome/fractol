@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:14:48 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/02/02 13:53:25 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/02/26 13:55:25 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,9 +23,10 @@ int		ft_usage(void)
     write(1, "3 : Burningship           \n", 27);
     write(1, "4 : Tapis Sierpinski      \n", 27);
     write(1, "5 : Triangle Sierpinski   \n", 27); // ou fougere
+    //
     write(1, "6 : Couleur A             \n", 27);
     write(1, "7 : Couleur B             \n", 27);
     write(1, "8 : Couleur C             \n", 27);
-    write(1, "9 : Couleur Psychedelique \n", 27);
+    write(1, "9 : Couleur in-imaginaire \n", 27);
 	return (64);
 }
