@@ -15,6 +15,8 @@ typedef struct  s_fractol
     intmax_t    x2;
     intmax_t    y1;
     intmax_t    y2;
+    intmax_t    x;
+    intmax_t    y;
 //    double      c_r;
 //    double      c_i;
 //    double      z_r;
@@ -60,7 +62,6 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
 void    fractol(t_fractol *data)
 {
     printf("\x1b[31mcode erreur: fractol A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-    //intmax_t    zoom = 200;
 
     int         iteration_max = data->nb_iter;
 
@@ -141,13 +142,13 @@ int     get_key(int keycode, t_fractol *data)
         data_key->x1 -= 0.1;
         data_key->x2 -= 0.1;
     }
-    else if (keycode == 22)
+    else if (keycode == 8)
         data_key->color = 1;
-    else if (keycode == 26)
+    else if (keycode == 9)
         data_key->color = 2;
-    else if (keycode == 28)
+    else if (keycode == 11)
         data_key->color = 3;
-    else if (keycode == 25)
+    else if (keycode == 45)
         data_key->color = 4;
     else if (keycode == 15)
         init_fract(data_key);
@@ -209,6 +210,12 @@ void    border_info(t_fractol *help)
 		"example : 101");
 }
 
+int     red_cross()
+{
+    exit(0);
+    return (0);
+}
+
 int     main(int argc, char **argv)
 {
     t_fractol   data;
@@ -219,6 +226,7 @@ int     main(int argc, char **argv)
     init_fract(&data);
     fractol(&data);
     get_key(0, &data);
+    mlx_hook(data.win, 17, 0, red_cross, (void *)0);
 //    mlx_mouse_hook(0, mouse, &data);
 //    border_info(&data);
 //    mlx_mouse_hook(data.win, mouse_hook, &data);
