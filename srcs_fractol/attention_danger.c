@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 
 typedef struct  s_fractol
 {
@@ -17,11 +18,11 @@ typedef struct  s_fractol
     intmax_t    y2;
     intmax_t    x;
     intmax_t    y;
-//    double      c_r;
-//    double      c_i;
-//    double      z_r;
-//    double      z_i;
-//    double      tmp;
+    double      c_r;
+    double      c_i;
+    double      z_r;
+    double      z_i;
+    double      tmp;
     intmax_t    zoom;
     int         color;
 }               t_fractol;
@@ -57,7 +58,51 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
     return (0);
 }
 
+void    ft_mandelbrot(t_fractol *data, double x, double y)
+{
+    data->c_r = x / data->zoom + data->x1;
+    data->c_i = y / data->zoom + data->y1;
+    data->z_r = 0;
+    data->z_i = 0;
+}
 
+void    ft_julia(t_fractol *data, double x, double y)
+{
+    data->c_r = -0.74;
+    data->c_i = -0.14;
+    data->z_r = x / data->zoom + data->x1;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_burningship(t_fractol *data, double x, double y)
+{
+    data->c_r = -0.74;
+    data->c_i = -0.14;
+    data->z_r = x / data->zoom + data->x1;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_choice(t_fractol *data, double x, double y)
+{
+    if (data->name == 1)
+        ft_mandelbrot(data, x, y);
+    if (data->name == 2)
+        ft_julia(data, x, y);
+    if (data->name == 3)
+        ft_burningship(data, x, y);
+//    if (data->name == 4)
+//        ft_tapis(data)
+//    if (data->name == 5)
+//        ft_triangle(data)
+//    if (data->name == 6)
+//        ft_perso1(data)
+//    if (data->name == 7)
+//        ft_perso2(data)
+//    if (data->name == 8)
+//        ft_perso3(data)
+//    if (data->name == 9)
+//        ft_perso4(data)
+}
 
 void    fractol(t_fractol *data)
 {
@@ -67,12 +112,6 @@ void    fractol(t_fractol *data)
 
     double      image_x = (data->x2 - data->x1) * data->zoom;
     double      image_y = (data->y2 - data->y1) * data->zoom;
-
-    double      c_r = 0;
-    double      c_i = 0;
-    double      z_r = 0;
-    double      z_i = 0;
-    double      tmp = 0;
     
     double      i = 0;
 
@@ -84,22 +123,23 @@ void    fractol(t_fractol *data)
         y = 0;
         while (y < image_y)
         {
-            c_r = -0.74;
-            c_i = -0.14;
-            z_r = x / data->zoom + data->x1;
-            z_i = y / data->zoom + data->y1;
+            data->c_r = -0.74;
+            data->c_i = -0.14;
+            data->z_r = x / data->zoom + data->x1;
+            data->z_i = y / data->zoom + data->y1;
+            //ft_choice(data, x, y); A REPARER
             i = 0;
-            while (((z_r * z_r + z_i * z_i)) < 4 && (i < iteration_max))
+            while (((data->z_r * data->z_r + data->z_i * data->z_i)) < 4 && (i < iteration_max))
             {
-                tmp = z_r;
-                z_r = z_r * z_r - z_i * z_i + c_r;
-                z_i = 2 * z_i * tmp + c_i;
+                data->tmp = data->z_r;
+                data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
+                data->z_i = 2 * data->z_i * data->tmp + data->c_i;
                 i++;
             }
             if (i == iteration_max)
                 mlx_pixel_put(data->mlx, data->win, x, y, 0);
             else
-                mlx_pixel_put(data->mlx, data->win, x, y, color_rgb_get_key(i, data, z_i));
+                mlx_pixel_put(data->mlx, data->win, x, y, color_rgb_get_key(i, data, data->z_i));
             y++;
         }
         x++;
@@ -203,11 +243,30 @@ void    border_info(t_fractol *help)
 {
     printf("\x1b[36mcode erreur: border_info A\n\x1b[0m");
     mlx_string_put(help->mlx, help->win, 10, 700, 0xffffff, \
-		"20 iter '+' ou '-'");
+		"c-v-b-n : orange-vert-bleu-glitch");
     mlx_string_put(help->mlx, help->win, 10, 720, 0xffffff, \
-		"next info");
+		"r : reboot");
+    //mlx_string_put(help->mlx, help->win, 10, 740, 0xffffff, \
+		"h : hide text");
     mlx_string_put(help->mlx, help->win, 600, 760, 0xffffff, \
 		"example : 101");
+}
+
+int		ft_usage(void)
+{
+	write(1, "How to use ?              \n", 27);
+    write(1, "\n", 1);
+    write(1, "Exemple : ./fractol 4     \n", 27);
+    write(1, ". 1 : Mandelbrot          \n", 27);
+    write(1, ". 2 : Julia               \n", 27);
+    write(1, ". 3 : Burningship         \n", 27);
+    write(1, ". 4 : Tapis Sierpinski    \n", 27);
+    write(1, ". 5 : Triangle Sierpinski \n", 27); // ou fougere
+    write(1, ". 6 : Fractale Perso 1    \n", 27);
+    write(1, ". 7 : Fractale Perso 2    \n", 27);
+    write(1, ". 8 : Fractale Perso 3    \n", 27);
+    write(1, ". 9 : Fractale Perso 4    \n", 27);
+	return (64);
 }
 
 int     red_cross()
@@ -220,7 +279,13 @@ int     main(int argc, char **argv)
 {
     t_fractol   data;
 
-//    data.name = argv[1];
+    if (argc != 2)
+    {
+        ft_usage();
+        exit(0);
+    }
+    data.name = *argv[1];
+    printf("data.name: %c\n", data.name);
     data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     init_fract(&data);
@@ -228,7 +293,7 @@ int     main(int argc, char **argv)
     get_key(0, &data);
     mlx_hook(data.win, 17, 0, red_cross, (void *)0);
 //    mlx_mouse_hook(0, mouse, &data);
-//    border_info(&data);
+    border_info(&data);
 //    mlx_mouse_hook(data.win, mouse_hook, &data);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
  

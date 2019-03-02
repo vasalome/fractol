@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 
 typedef struct  s_fractol
 {
@@ -15,6 +16,8 @@ typedef struct  s_fractol
     intmax_t    x2;
     intmax_t    y1;
     intmax_t    y2;
+    intmax_t    x;
+    intmax_t    y;
 //    double      c_r;
 //    double      c_i;
 //    double      z_r;
@@ -32,7 +35,7 @@ void    init_fract(t_fractol *data)
     data->x2 = 2;
     data->y1 = -2;
     data->y2 = 2;
-//    data->zoom = 100;
+    data->zoom = 200;
 }
 
 int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choose) // choix de couleur
@@ -60,12 +63,11 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
 void    fractol(t_fractol *data)
 {
     printf("\x1b[31mcode erreur: fractol A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-    intmax_t    zoom = 200;
 
     int         iteration_max = data->nb_iter;
 
-    double      image_x = (data->x2 - data->x1) * zoom;
-    double      image_y = (data->y2 - data->y1) * zoom;
+    double      image_x = (data->x2 - data->x1) * data->zoom;
+    double      image_y = (data->y2 - data->y1) * data->zoom;
 
     double      c_r = 0;
     double      c_i = 0;
@@ -83,10 +85,10 @@ void    fractol(t_fractol *data)
         y = 0;
         while (y < image_y)
         {
-            c_r = x / zoom + data->x1;
-            c_i = y / zoom + data->y1;
-            z_r = 0;
-            z_i = 0;
+            c_r = -0.74;
+            c_i = -0.14;
+            z_r = x / data->zoom + data->x1;
+            z_i = y / data->zoom + data->y1;
             i = 0;
             while (((z_r * z_r + z_i * z_i)) < 4 && (i < iteration_max))
             {
@@ -118,11 +120,7 @@ int     get_key(int keycode, t_fractol *data)
         exit(0);
     }
     else if (keycode == 69)
-    {
-        dprintf(1, "KEY 69 ON\n");
         data_key->nb_iter += 20;
-        dprintf(1, "KEY 69 OFF\n");
-    }
     else if (keycode == 78)
         data_key->nb_iter -= 20;
     else if (keycode == 126)
@@ -155,43 +153,130 @@ int     get_key(int keycode, t_fractol *data)
         data_key->color = 4;
     else if (keycode == 15)
         init_fract(data_key);
+    //else if (keycode == 25)
+        //hide_info;
+    else if (keycode == 6)
+    {
+        data_key->x1 = (0 / data_key->zoom + data_key->x1) - (0 / (data_key->zoom * 1.3));
+        data_key->y1 = (0 / data_key->zoom + data_key->y1) - (0 / (data_key->zoom * 1.3));
+        data_key->zoom *= 1.3;
+        data_key->nb_iter += 10;
+    }
+    else if (keycode == 7)
+    { // Maybe : Ajouter un blocage pour empecher le zoom > 0 sinon segfault
+        data_key->x1 = (0 / data_key->zoom + data_key->x1) - (0 / (data_key->zoom / 1.3));
+        data_key->y1 = (0 / data_key->zoom + data_key->y1) - (0 / (data_key->zoom / 1.3));
+        data_key->zoom /= 1.3;
+        data_key->nb_iter -= 10;
+    }
     fractol(data_key);
     printf("keycode : %d\n", keycode);
     printf("\x1b[35mcode erreur: get_key B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
     return (0);
 }
 /*
-int     get_mouse()
+int     mouse(int mousecode, int x, int y, t_fractol *data)
 {
-    printf("\x1b[33mcode erreur: get_mouse A\n\x1b[0m");
+    static t_fractol    *data_mouse = NULL;
+printf("\x1b[35mcode erreur: get_mouse A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+//    if (data_mouse == NULL)
+//        data_mouse = data;
+    if (mousecode == 4 || mousecode == 1)
+    {
+        data_mouse->x1 = (x / data_mouse->zoom + data_mouse->x1) - (x / (data_mouse->zoom * 1.3));
+        data_mouse->y1 = (y / data_mouse->zoom + data_mouse->y1) - (y / (data_mouse->zoom * 1.3));
+        data_mouse->zoom *= 1.3;
+        data_mouse->nb_iter++;
+    }
+    else if (mousecode == 5 || mousecode == 2)
+    {
+        data_mouse->x1 = (x / data_mouse->zoom + data_mouse->x1) - (x / (data_mouse->zoom / 1.3));
+        data_mouse->y1 = (y / data_mouse->zoom + data_mouse->y1) - (y / (data_mouse->zoom / 1.3));
+        data_mouse->zoom /= 1.3;
+        data_mouse->nb_iter--;
+    }
+    fractol(data_mouse);
+    printf("mousecode : %d\n", mousecode);
     return (0);
 }
-
+*/
 void    border_info(t_fractol *help)
 {
     printf("\x1b[36mcode erreur: border_info A\n\x1b[0m");
     mlx_string_put(help->mlx, help->win, 10, 700, 0xffffff, \
-		"20 iter '+' ou '-'");
+		"c-v-b-n : orange-vert-bleu-glitch");
     mlx_string_put(help->mlx, help->win, 10, 720, 0xffffff, \
-		"next info");
+		"r : reboot");
+    //mlx_string_put(help->mlx, help->win, 10, 740, 0xffffff, \
+		"h : hide text");
     mlx_string_put(help->mlx, help->win, 600, 760, 0xffffff, \
 		"example : 101");
 }
-*/
+
+int		ft_usage(void)
+{
+	write(1, "How to use ?              \n", 27);
+    write(1, "\n", 1);
+    write(1, "Exemple : ./fractol 4     \n", 27);
+    write(1, ". 1 : Mandelbrot          \n", 27);
+    write(1, ". 2 : Julia               \n", 27);
+    write(1, ". 3 : Burningship         \n", 27);
+    write(1, ". 4 : Tapis Sierpinski    \n", 27);
+    write(1, ". 5 : Triangle Sierpinski \n", 27); // ou fougere
+    write(1, ". 6 : Fractale Perso 1    \n", 27);
+    write(1, ". 7 : Fractale Perso 2    \n", 27);
+    write(1, ". 8 : Fractale Perso 3    \n", 27);
+    write(1, ". 9 : Fractale Perso 4    \n", 27);
+	return (64);
+}
+
+int     red_cross()
+{
+    exit(0);
+    return (0);
+}
+
 int     main(int argc, char **argv)
 {
     t_fractol   data;
 
-//    data.name = argv[1];
+    if (argc != 2)
+    {
+        ft_usage();
+        exit(0);
+    }
+    data.name = *argv[1];
+    printf("data.name: %c\n", data.name);
     data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     init_fract(&data);
     fractol(&data);
     get_key(0, &data);
-//    get_mouse();
- //   border_info(&data);
-//    mlx_key_hook(data.win, get_key, (void *)0);
+    mlx_hook(data.win, 17, 0, red_cross, (void *)0);
+//    mlx_mouse_hook(0, mouse, &data);
+    border_info(&data);
+//    mlx_mouse_hook(data.win, mouse_hook, &data);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
  
     mlx_loop(data.mlx);
 }
+
+
+/*
+
+mandelbrot
+    c_r = x / data->zoom + data->x1;
+    c_i = y / data->zoom + data->y1;
+    z_r = 0;
+    z_i = 0;  
+
+julia
+    c_r = -0.74;
+    c_i = -0.14;
+    z_r = x / data->zoom + data->x1;
+    z_i = y / data->zoom + data->y1;
+
+burning ship
+
+
+*/
