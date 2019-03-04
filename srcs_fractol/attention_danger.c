@@ -1,14 +1,17 @@
 #include "../minilibx_macos/mlx.h"
+//#include "../libX11/include/X11/Xlib.h"
 //#include "../libft/includes/libft.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <string.h>
+//#include <X11/X.h>
 
 typedef struct  s_fractol
 {
-    char        name;
+    char        *name;
     double      nb_iter;
     void        *mlx;
     void        *win;
@@ -22,6 +25,8 @@ typedef struct  s_fractol
     double      c_i;
     double      z_r;
     double      z_i;
+    double      cmouse_r;
+    double      cmouse_i;
     double      tmp;
     intmax_t    zoom;
     int         color;
@@ -76,32 +81,80 @@ void    ft_julia(t_fractol *data, double x, double y)
 
 void    ft_burningship(t_fractol *data, double x, double y)
 {
-    data->c_r = -0.74;
-    data->c_i = -0.14;
+    data->c_r = x / data->zoom + data->x1;
+    data->c_i = y / data->zoom + data->y1;
+    data->z_r = 0;
+    data->z_i = 0;
+}
+
+void    ft_tapis(t_fractol *data, double x, double y)
+{
+    data->c_r = data->cmouse_r;
+    data->c_i = data->cmouse_i;
     data->z_r = x / data->zoom + data->x1;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_triangle(t_fractol *data, double x, double y)
+{
+    data->c_r = 0;
+    data->c_i = x / data->zoom + data->x1;
+    data->z_r = 0;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_perso1(t_fractol *data, double x, double y)
+{
+    data->c_r = 0;
+    data->c_i = x / data->zoom + data->x1;
+    data->z_r = 0;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_perso2(t_fractol *data, double x, double y)
+{
+    data->c_r = 0;
+    data->c_i = x / data->zoom + data->x1;
+    data->z_r = 0;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_perso3(t_fractol *data, double x, double y)
+{
+    data->c_r = 0;
+    data->c_i = x / data->zoom + data->x1;
+    data->z_r = 0;
+    data->z_i = y / data->zoom + data->y1;
+}
+
+void    ft_perso4(t_fractol *data, double x, double y)
+{
+    data->c_r = 0;
+    data->c_i = x / data->zoom + data->x1;
+    data->z_r = 0;
     data->z_i = y / data->zoom + data->y1;
 }
 
 void    ft_choice(t_fractol *data, double x, double y)
 {
-    if (data->name == 1)
+    if (!(strcmp(data->name, "1"))) // NE PAS OUBLIER DE MODIFIER LES STRCMP PAR MA FONCTION
         ft_mandelbrot(data, x, y);
-    if (data->name == 2)
+    if (!(strcmp(data->name, "2")))
         ft_julia(data, x, y);
-    if (data->name == 3)
+    if (!(strcmp(data->name, "3")))
         ft_burningship(data, x, y);
-//    if (data->name == 4)
-//        ft_tapis(data)
-//    if (data->name == 5)
-//        ft_triangle(data)
-//    if (data->name == 6)
-//        ft_perso1(data)
-//    if (data->name == 7)
-//        ft_perso2(data)
-//    if (data->name == 8)
-//        ft_perso3(data)
-//    if (data->name == 9)
-//        ft_perso4(data)
+    if (!(strcmp(data->name, "4")))
+        ft_tapis(data, x, y);
+    if (!(strcmp(data->name, "5")))
+        ft_triangle(data, x, y);
+    if (!(strcmp(data->name, "6")))
+        ft_perso1(data, x, y);
+    if (!(strcmp(data->name, "7")))
+        ft_perso2(data, x, y);
+    if (!(strcmp(data->name, "8")))
+        ft_perso3(data, x, y);
+    if (!(strcmp(data->name, "9")))
+        ft_perso4(data, x, y);
 }
 
 void    fractol(t_fractol *data)
@@ -117,23 +170,22 @@ void    fractol(t_fractol *data)
 
     double      x = 0;
     double      y = 0;
-    
+    mlx_clear_window(data->mlx, data->win);
     while (x < image_x)
     {
         y = 0;
         while (y < image_y)
         {
-            data->c_r = -0.74;
-            data->c_i = -0.14;
-            data->z_r = x / data->zoom + data->x1;
-            data->z_i = y / data->zoom + data->y1;
-            //ft_choice(data, x, y); A REPARER
+            ft_choice(data, x, y);
             i = 0;
             while (((data->z_r * data->z_r + data->z_i * data->z_i)) < 4 && (i < iteration_max))
             {
                 data->tmp = data->z_r;
                 data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
                 data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+                //data->tmp = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r; TEST burningship
+                //data->z_i = fabs(2 * data->z_r * data->z_i) + data->c_r;
+                //data->z_r = data->tmp;
                 i++;
             }
             if (i == iteration_max)
@@ -150,14 +202,11 @@ void    fractol(t_fractol *data)
 int     get_key(int keycode, t_fractol *data)
 {
     static t_fractol    *data_key = NULL;
-    printf("\x1b[35mcode erreur: get_key A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+    printf("code erreur: get_key A - ENTRER\n");
     if (data_key == NULL)
         data_key = data;
     if (keycode == 53)
-    {
-        dprintf(1, "KEY ESC ON\n");
         exit(0);
-    }
     else if (keycode == 69)
         data_key->nb_iter += 20;
     else if (keycode == 78)
@@ -192,7 +241,7 @@ int     get_key(int keycode, t_fractol *data)
         data_key->color = 4;
     else if (keycode == 15)
         init_fract(data_key);
-    //else if (keycode == 25)
+    //else if (keycode == 4)
         //hide_info;
     else if (keycode == 6)
     {
@@ -208,13 +257,49 @@ int     get_key(int keycode, t_fractol *data)
         data_key->zoom /= 1.3;
         data_key->nb_iter -= 10;
     }
+    else if (keycode == 18)
+        data_key->name = "1";
+    else if (keycode == 19)
+        data_key->name = "2";
+    else if (keycode == 20)
+        data_key->name = "3";
+    else if (keycode == 21)
+        data_key->name = "4";
+    else if (keycode == 23)
+        data_key->name = "5";
+    else if (keycode == 22)
+        data_key->name = "6";
+    else if (keycode == 26)
+        data_key->name = "7";
+    else if (keycode == 28)
+        data_key->name = "8";
+    else if (keycode == 25)
+        data_key->name = "9";
     fractol(data_key);
     printf("keycode : %d\n", keycode);
-    printf("\x1b[35mcode erreur: get_key B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+    printf("code erreur: get_key A - SORTIE\n");
     return (0);
 }
+
+int     get_my_mouse(int x, int y, t_fractol *data)
+{
+    static t_fractol *data_mouse = NULL;
+    double  x1;
+    double  x2;
+
+    if (data_mouse == NULL)
+        data_mouse = data;
+    x1 = x;
+    x2 = y;
+    data_mouse->cmouse_r = x1 / 660;
+    data_mouse->cmouse_i = x2 / 660;
+    fractol(data_mouse);
+    return (0);
+
+}
+
 /*
-int     mouse(int mousecode, int x, int y, t_fractol *data)
+int     get_key_mouse(int mousecode, int x, int y, t_fractol *data)
 {
     static t_fractol    *data_mouse = NULL;
 printf("\x1b[35mcode erreur: get_mouse A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
@@ -254,6 +339,7 @@ void    border_info(t_fractol *help)
 
 int		ft_usage(void)
 {
+    write(1, "\n", 1);
 	write(1, "How to use ?              \n", 27);
     write(1, "\n", 1);
     write(1, "Exemple : ./fractol 4     \n", 27);
@@ -266,6 +352,7 @@ int		ft_usage(void)
     write(1, ". 7 : Fractale Perso 2    \n", 27);
     write(1, ". 8 : Fractale Perso 3    \n", 27);
     write(1, ". 9 : Fractale Perso 4    \n", 27);
+    write(1, "\n", 1);
 	return (64);
 }
 
@@ -284,8 +371,8 @@ int     main(int argc, char **argv)
         ft_usage();
         exit(0);
     }
-    data.name = *argv[1];
-    printf("data.name: %c\n", data.name);
+    data.name = argv[1];
+    printf("data.name: %s\n", data.name);
     data.mlx = mlx_init();
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     init_fract(&data);
@@ -294,28 +381,8 @@ int     main(int argc, char **argv)
     mlx_hook(data.win, 17, 0, red_cross, (void *)0);
 //    mlx_mouse_hook(0, mouse, &data);
     border_info(&data);
-//    mlx_mouse_hook(data.win, mouse_hook, &data);
+//    mlx_hook(data.win, MotionNotify, PointerMotionMask, get_my_mouse, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
  
     mlx_loop(data.mlx);
 }
-
-
-/*
-
-mandelbrot
-    c_r = x / data->zoom + data->x1;
-    c_i = y / data->zoom + data->y1;
-    z_r = 0;
-    z_i = 0;  
-
-julia
-    c_r = -0.74;
-    c_i = -0.14;
-    z_r = x / data->zoom + data->x1;
-    z_i = y / data->zoom + data->y1;
-
-burning ship
-
-
-*/
