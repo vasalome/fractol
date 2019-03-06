@@ -7,7 +7,7 @@
 #include <pthread.h>
 #include <unistd.h>
 #include <string.h>
-//#include <X11/X.h>
+#include <Tk/X11/X.h>
 
 typedef struct  s_fractol
 {
@@ -97,13 +97,13 @@ void    ft_tapis(t_fractol *data, double x, double y)
 
 void    ft_triangle(t_fractol *data, double x, double y)
 {
-    data->c_r = 0;
-    data->c_i = x / data->zoom + data->x1;
-    data->z_r = 0;
+    data->c_r = data->cmouse_r;
+    data->c_i = data->cmouse_i;
+    data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;
 }
 
-void    ft_perso1(t_fractol *data, double x, double y)
+void    ft_portail(t_fractol *data, double x, double y)
 {
     data->c_r = 0;
     data->c_i = x / data->zoom + data->x1;
@@ -111,27 +111,27 @@ void    ft_perso1(t_fractol *data, double x, double y)
     data->z_i = y / data->zoom + data->y1;
 }
 
-void    ft_perso2(t_fractol *data, double x, double y)
+void    ft_tornado(t_fractol *data, double x, double y)
 {
-    data->c_r = 0;
-    data->c_i = x / data->zoom + data->x1;
-    data->z_r = 0;
+    data->c_r = 0.369697;
+    data->c_i = 0.312121;
+    data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;
 }
 
 void    ft_perso3(t_fractol *data, double x, double y)
 {
-    data->c_r = 0;
-    data->c_i = x / data->zoom + data->x1;
-    data->z_r = 0;
+    data->c_r = data->cmouse_r;
+    data->c_i = data->cmouse_i;
+    data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;
 }
 
 void    ft_perso4(t_fractol *data, double x, double y)
 {
-    data->c_r = 0;
-    data->c_i = x / data->zoom + data->x1;
-    data->z_r = 0;
+    data->c_r = data->cmouse_r;
+    data->c_i = data->cmouse_i;
+    data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;
 }
 
@@ -148,9 +148,9 @@ void    ft_choice(t_fractol *data, double x, double y)
     if (!(strcmp(data->name, "5")))
         ft_triangle(data, x, y);
     if (!(strcmp(data->name, "6")))
-        ft_perso1(data, x, y);
+        ft_portail(data, x, y);
     if (!(strcmp(data->name, "7")))
-        ft_perso2(data, x, y);
+        ft_tornado(data, x, y);
     if (!(strcmp(data->name, "8")))
         ft_perso3(data, x, y);
     if (!(strcmp(data->name, "9")))
@@ -197,6 +197,7 @@ void    fractol(t_fractol *data)
         x++;
     }
     printf("\x1b[31mcode erreur: fractol B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+    printf("\x1b[31mcode erreur: 4emeFRACTAL - data->cmouse_r: %f - data->cmouse_i: %f\n\x1b[0m", data->cmouse_r, data->cmouse_i);
 }
 
 int     get_key(int keycode, t_fractol *data)
@@ -283,6 +284,7 @@ int     get_key(int keycode, t_fractol *data)
 
 int     get_my_mouse(int x, int y, t_fractol *data)
 {
+    printf("code erreur: get_my_mouse A - SORTIE\n");
     static t_fractol *data_mouse = NULL;
     double  x1;
     double  x2;
@@ -293,12 +295,12 @@ int     get_my_mouse(int x, int y, t_fractol *data)
     x2 = y;
     data_mouse->cmouse_r = x1 / 660;
     data_mouse->cmouse_i = x2 / 660;
+    printf("code erreur: get_my_mouse IN - SORTIE\n");
     fractol(data_mouse);
+    printf("code erreur: get_my_mouse B - SORTIE\n");
     return (0);
-
 }
 
-/*
 int     get_key_mouse(int mousecode, int x, int y, t_fractol *data)
 {
     static t_fractol    *data_mouse = NULL;
@@ -323,7 +325,7 @@ printf("\x1b[35mcode erreur: get_mouse A - nb_iter: %f - color: %d\n\x1b[0m", da
     printf("mousecode : %d\n", mousecode);
     return (0);
 }
-*/
+
 void    border_info(t_fractol *help)
 {
     printf("\x1b[36mcode erreur: border_info A\n\x1b[0m");
@@ -348,8 +350,8 @@ int		ft_usage(void)
     write(1, ". 3 : Burningship         \n", 27);
     write(1, ". 4 : Tapis Sierpinski    \n", 27);
     write(1, ". 5 : Triangle Sierpinski \n", 27); // ou fougere
-    write(1, ". 6 : Fractale Perso 1    \n", 27);
-    write(1, ". 7 : Fractale Perso 2    \n", 27);
+    write(1, ". 6 : Fractale Portail    \n", 27);
+    write(1, ". 7 : Fractale Tornado    \n", 27);
     write(1, ". 8 : Fractale Perso 3    \n", 27);
     write(1, ". 9 : Fractale Perso 4    \n", 27);
     write(1, "\n", 1);
@@ -378,10 +380,12 @@ int     main(int argc, char **argv)
     init_fract(&data);
     fractol(&data);
     get_key(0, &data);
+    //get_key_mouse(0, 0, 0, &data);
+    get_my_mouse(0, 0, &data);
     mlx_hook(data.win, 17, 0, red_cross, (void *)0);
 //    mlx_mouse_hook(0, mouse, &data);
     border_info(&data);
-//    mlx_hook(data.win, MotionNotify, PointerMotionMask, get_my_mouse, (void *)0);
+    mlx_hook(data.win, MotionNotify, PointerMotionMask, get_my_mouse, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
  
     mlx_loop(data.mlx);
