@@ -6,39 +6,53 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:11:32 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 18:45:02 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/08 18:13:40 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
 
-int     mouse_move_hook(int x, int y, t_fractol *move)
+int     get_my_mouse(int x, int y, t_fractol *data)
 {
-    if (x < 0 || x >= move->w_width || y < 0 || y >= move->w_lenght)
-        return (0);
-    move->
+    printf("code erreur: get_my_mouse A - SORTIE\n");
+    static t_fractol *data_mouse = NULL;
+    double  x1;
+    double  x2;
 
+    if (data_mouse == NULL)
+        data_mouse = data;
+    x1 = x;
+    x2 = y;
+    data_mouse->cmouse_r = x1 / 660;
+    data_mouse->cmouse_i = x2 / 660;
+    printf("code erreur: get_my_mouse IN - SORTIE\n");
+    fractol(data_mouse);
+    printf("code erreur: get_my_mouse B - SORTIE\n");
+    return (0);
 }
 
-int     mouse_click_hook(int m_key, int x, int y, t_fractol *m_click)
+int     get_key_mouse(int mousecode, int x, int y, t_fractol *data)
 {
-    if (m_key == MOUSE_ZOOM_IN)
+    static t_fractol    *data_mouse = NULL;
+printf("\x1b[35mcode erreur: get_mouse A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
+//    if (data_mouse == NULL)
+//        data_mouse = data;
+    if (mousecode == 4 || mousecode == 1)
     {
-        m_click->x += x / 5;
-        m_click->y += y / 5;
-        m_click->zoom = m_click->zoom * 1.2;
-        m_click->x = m_click->x * 1.2;
-        m_click->y = m_click->y * 1.2;
+        data_mouse->x1 = (x / data_mouse->zoom + data_mouse->x1) - (x / (data_mouse->zoom * 1.3));
+        data_mouse->y1 = (y / data_mouse->zoom + data_mouse->y1) - (y / (data_mouse->zoom * 1.3));
+        data_mouse->zoom *= 1.3;
+        data_mouse->nb_iter++;
     }
-    if (m_key == MOUSE_ZOOM_OUT)
+    else if (mousecode == 5 || mousecode == 2)
     {
-        m_click->x += x / 5;
-        m_click->y += y / 5;
-        m_click->zoom = m_click->zoom * 1.2;
-        m_click->x = m_click->x * 1.2;
-        m_click->y = m_click->y * 1.2;
+        data_mouse->x1 = (x / data_mouse->zoom + data_mouse->x1) - (x / (data_mouse->zoom / 1.3));
+        data_mouse->y1 = (y / data_mouse->zoom + data_mouse->y1) - (y / (data_mouse->zoom / 1.3));
+        data_mouse->zoom /= 1.3;
+        data_mouse->nb_iter--;
     }
-    m_click->ft_fractol(m_click)
+    fractol(data_mouse);
+    printf("mousecode : %d\n", mousecode);
     return (0);
 }

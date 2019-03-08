@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/02/28 16:15:38 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/08 19:52:30 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -30,8 +30,12 @@ INC_DIR		=	./includes_fractol/
 
 #	Sources:
 SRCS		=	main_fractol.c
-SRCS		+=
-SRCS		+=	
+SRCS		+=	ft_usage.c
+SRCS		+=	ft_dothemath.c
+SRCS		+=	ft_choice1.c
+SRCS		+=	ft_colors.c
+SRCS		+=	ft_keyboard.c
+SRCS		+=	ft_mouse.c
 
 #	Objects:
 OBJ			=	$(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
@@ -77,7 +81,7 @@ $(OBJ_DIR)%.o:$(SRCS_DIR)%.c $(INC_DIR)*.h
 	@printf "\r                                             \r"
 
 all:
-	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION OBJECTS: IN PROGRESS..$(_STOP)\n		OBJECTS DIRECTORY: CREATION || ->\n"
+	@echo "$(_ORANGE)$(UNDERLINE)FRACTOL:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION OBJECTS: IN PROGRESS..$(_STOP)\n		OBJECTS DIRECTORY: CREATION || ->\n"
 	@mkdir -p $(OBJ_DIR)
 	@$(MAKE) $(NAME) --no-print-directory
 
@@ -89,31 +93,31 @@ all:
 #	@make re -C minilibx_macos/
 #	@echo "\n"
 
-$(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
-	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
-#	gcc -I ./minilibx_macos/mlx.h srcs_fractol/main_fractol.c ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit # FONCTIONNEL ? A MODIFIER
+$(NAME): $(OBJ) $(INC_DIR) #make_libft #make_mlx
+	@echo "$(_ORANGE)$(UNDERLINE)FRACTOL:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
+#	@gcc -I ./minilibx_macos/mlx.h srcs_fractol/attention_danger.c ./includes_fractol/fractol.h ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit # FONCTIONNEL ? A MODIFIER
+	@$(CC) $(CFLAGS) $(OBJ) -I ./minilibx_macos/mlx.h ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit -I ./libft/includes $(INC) -o $(NAME) #EN ATTENDANT
 	@echo "$(_ORANGE)| ->		$(NAME):" "$(_STOP)|\033[42m     $(BOLD)L O A D I N G$(R_BOLD)     $(_STOP)|" #| pv -qL 15
 	@echo "		$(_ORANGE)$(BLINK)100%\n$(R_BLINK)$(_STOP)"
 #	@sleep 1.5
 #	@clear
-#	@echo "\n$(_ORANGE)		______________________"
-#	@echo "	|>							<|"
-#	@echo "	|>	┌─┐┬─┐┌─┐┌─┐┌┬┐┌─┐┬ 	<|"
-#	@echo "	|>	├┤ ├┬┘├─┤│   │ │ ││  	<|"
-#	@echo "	|>	└  ┴└─┴ ┴└─┘ ┴ └─┘┴─┘	<|"
-#	@echo "	|>							<|"
-	@echo "	__________________$(_STOP)$(BLINK)$(_YELLOW)is ready$(R_BLINK)$(_ORANGE)_"
-#	@echo "	|>							<|$(_STOP)\n"
+	@echo "\n$(_ORANGE)	   _____________________________"
+	@echo "	|>				  <|"
+	@echo "	|>	┌─┐┬─┐┌─┐┌─┐┌┬┐┌─┐┬  	  <|"
+	@echo "	|>	├┤ ├┬┘├─┤│   │ │ ││  	  <|"
+	@echo "	|>	└  ┴└─┴ ┴└─┘ ┴ └─┘┴─┘	  <|"
+	@echo "	|>				  <|"
+	@echo "	   __________________$(_STOP)$(BLINK)$(_YELLOW)is ready$(R_BLINK)$(_ORANGE)____$(_STOP)\n"
 
 clean:
-	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"
+	@echo "$(_ORANGE)$(UNDERLINE)FRACTOL:$(R_UNDERLINE)$(_STOP)		$(BOLD)CLEAN: IN PROGRESS..$(_STOP)\n		DELETING OBJECTS || ->\n"
 	@$(RM_DIR) $(OBJ_DIR)
 	@$(MAKE) clean -C libft/
 	@echo "$(_ORANGE)| ->		CLEAN: DONE\n$(_STOP)"
 
 fclean: clean
-	@echo "$(_ORANGE)$(UNDERLINE)FDF:$(R_UNDERLINE)$(_STOP)		$(BOLD)FCLEAN: IN PROGRESS..$(_STOP)\n		DELETING EXEC || ->\n"
-	@$(RM_DIR) $(NAME) a.out fdf.dSYM a.out.dSYM
+	@echo "$(_ORANGE)$(UNDERLINE)FRACTOL:$(R_UNDERLINE)$(_STOP)		$(BOLD)FCLEAN: IN PROGRESS..$(_STOP)\n		DELETING EXEC || ->\n"
+	@$(RM_DIR) $(NAME) a.out fractol.dSYM a.out.dSYM
 	@$(MAKE) fclean -C libft/
 	@echo "$(_ORANGE)| ->		FCLEAN: DONE\n$(_STOP)"
 

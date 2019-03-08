@@ -32,6 +32,25 @@ typedef struct  s_fractol
     int         color;
 }               t_fractol;
 
+int		ft_usage(void)
+{
+    write(1, "\n", 1);
+	write(1, "How to use ?              \n", 27);
+    write(1, "\n", 1);
+    write(1, "Exemple : ./fractol 4     \n", 27);
+    write(1, ". 1 : Mandelbrot          \n", 27);
+    write(1, ". 2 : Julia               \n", 27);
+    write(1, ". 3 : Burningship         \n", 27);
+    write(1, ". 4 : Tapis Sierpinski    \n", 27);
+    write(1, ". 5 : Triangle Sierpinski \n", 27); // ou fougere
+    write(1, ". 6 : Fractale Portail    \n", 27);
+    write(1, ". 7 : Fractale Tornado    \n", 27);
+    write(1, ". 8 : Fractale Perso 3    \n", 27);
+    write(1, ". 9 : Fractale Perso 4    \n", 27);
+    write(1, "\n", 1);
+	return (64);
+}
+
 void    init_fract(t_fractol *data)
 {
     data->nb_iter = 100;
@@ -81,18 +100,28 @@ void    ft_julia(t_fractol *data, double x, double y)
 
 void    ft_burningship(t_fractol *data, double x, double y)
 {
-    data->c_r = x / data->zoom + data->x1;
-    data->c_i = y / data->zoom + data->y1;
-    data->z_r = 0;
-    data->z_i = 0;
+    data->c_r = -1.762;
+    data->c_i = -0.028; //* i;
+    data->z_r = x / data->zoom + data->x1;
+    data->z_i = y / data->zoom + data->y1;
 }
 
 void    ft_tapis(t_fractol *data, double x, double y)
-{
-    data->c_r = data->cmouse_r;
-    data->c_i = data->cmouse_i;
-    data->z_r = x / data->zoom + data->x1;
-    data->z_i = y / data->zoom + data->y1;
+{/*
+    int     i;
+
+    i = 0;
+    x *= data->zoom;
+    y *= data->zoom;
+    while (i < 100)
+	{
+		if ((x % 3 == 1) && (y % 3 == 1))
+			return (0);
+		x /= 3;
+		y /= 3;
+		i++;
+	}
+	return (20);*/
 }
 
 void    ft_triangle(t_fractol *data, double x, double y)
@@ -139,22 +168,27 @@ void    ft_choice(t_fractol *data, double x, double y)
 {
     if (!(strcmp(data->name, "1"))) // NE PAS OUBLIER DE MODIFIER LES STRCMP PAR MA FONCTION
         ft_mandelbrot(data, x, y);
-    if (!(strcmp(data->name, "2")))
+    else if (!(strcmp(data->name, "2")))
         ft_julia(data, x, y);
-    if (!(strcmp(data->name, "3")))
+    else if (!(strcmp(data->name, "3")))
         ft_burningship(data, x, y);
-    if (!(strcmp(data->name, "4")))
+    else if (!(strcmp(data->name, "4")))
         ft_tapis(data, x, y);
-    if (!(strcmp(data->name, "5")))
+    else if (!(strcmp(data->name, "5")))
         ft_triangle(data, x, y);
-    if (!(strcmp(data->name, "6")))
+    else if (!(strcmp(data->name, "6")))
         ft_portail(data, x, y);
-    if (!(strcmp(data->name, "7")))
+    else if (!(strcmp(data->name, "7")))
         ft_tornado(data, x, y);
-    if (!(strcmp(data->name, "8")))
+    else if (!(strcmp(data->name, "8")))
         ft_perso3(data, x, y);
-    if (!(strcmp(data->name, "9")))
+    else if (!(strcmp(data->name, "9")))
         ft_perso4(data, x, y);
+    else
+    {
+        ft_usage();
+        exit(0);
+    }
 }
 
 void    fractol(t_fractol *data)
@@ -183,9 +217,13 @@ void    fractol(t_fractol *data)
                 data->tmp = data->z_r;
                 data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
                 data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+
+                
                 //data->tmp = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r; TEST burningship
                 //data->z_i = fabs(2 * data->z_r * data->z_i) + data->c_r;
                 //data->z_r = data->tmp;
+
+
                 i++;
             }
             if (i == iteration_max)
@@ -326,36 +364,29 @@ printf("\x1b[35mcode erreur: get_mouse A - nb_iter: %f - color: %d\n\x1b[0m", da
     return (0);
 }
 
-void    border_info(t_fractol *help)
-{
-    printf("\x1b[36mcode erreur: border_info A\n\x1b[0m");
-    mlx_string_put(help->mlx, help->win, 10, 700, 0xffffff, \
-		"c-v-b-n : orange-vert-bleu-glitch");
-    mlx_string_put(help->mlx, help->win, 10, 720, 0xffffff, \
-		"r : reboot");
-    //mlx_string_put(help->mlx, help->win, 10, 740, 0xffffff, \
-		"h : hide text");
-    mlx_string_put(help->mlx, help->win, 600, 760, 0xffffff, \
-		"example : 101");
-}
-
-int		ft_usage(void)
+void	ft_whats_my_buttons(void)
 {
     write(1, "\n", 1);
-	write(1, "How to use ?              \n", 27);
+	write(1, "Interaction ->            \n", 27);
     write(1, "\n", 1);
-    write(1, "Exemple : ./fractol 4     \n", 27);
-    write(1, ". 1 : Mandelbrot          \n", 27);
-    write(1, ". 2 : Julia               \n", 27);
-    write(1, ". 3 : Burningship         \n", 27);
-    write(1, ". 4 : Tapis Sierpinski    \n", 27);
-    write(1, ". 5 : Triangle Sierpinski \n", 27); // ou fougere
-    write(1, ". 6 : Fractale Portail    \n", 27);
-    write(1, ". 7 : Fractale Tornado    \n", 27);
-    write(1, ". 8 : Fractale Perso 3    \n", 27);
-    write(1, ". 9 : Fractale Perso 4    \n", 27);
+    write(1, "Colors :                  \n", 27);
+    write(1, ". C : Base orange         \n", 27);
+    write(1, ". V : Base verte          \n", 27);
+    write(1, ". B : Base bleue          \n", 27);
+    write(1, ". N : Surprise            \n", 27);
     write(1, "\n", 1);
-	return (64);
+    write(1, "Options Zoom :            \n", 27);
+    write(1, ". Z - Souris 1 : Zoom In  \n", 27);
+    write(1, ". X - Souris 2 : Zoom Out \n", 27);
+    write(1, ". Or use mouse wheel      \n", 27);
+    write(1, "\n", 1);
+    write(1, "Mouvements :              \n", 27);
+    write(1, "Use Arrows                \n", 27);
+    write(1, "\n", 1);
+    write(1, "Autres     :              \n", 27);
+    write(1, ". R : Reset               \n", 27);
+    write(1, ". 1-9 : Change ur fractal \n", 27);
+    write(1, "\n", 1);
 }
 
 int     red_cross()
@@ -379,12 +410,12 @@ int     main(int argc, char **argv)
     data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
     init_fract(&data);
     fractol(&data);
+    ft_whats_my_buttons();
     get_key(0, &data);
     //get_key_mouse(0, 0, 0, &data);
     get_my_mouse(0, 0, &data);
     mlx_hook(data.win, 17, 0, red_cross, (void *)0);
 //    mlx_mouse_hook(0, mouse, &data);
-    border_info(&data);
     mlx_hook(data.win, MotionNotify, PointerMotionMask, get_my_mouse, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
  
