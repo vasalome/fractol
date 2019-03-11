@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/22 13:32:45 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 18:53:45 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/11 21:02:50 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,6 @@ int     color_rgb_get_key(int i, t_fractol *data, double z_i)//, t_fractol *choo
     if (data->color == 3) // bleu
         return (b * 65536 + g * 256 + r);
     if (data->color == 4) // stupid color
-        return ((((i * 16) * 65536) + z_i * 256 * 256 * i) / z_i);
+        return (((((i * 16) * 65536) + z_i * 256 * 256 * i) * z_i));
     return (0);
 }
