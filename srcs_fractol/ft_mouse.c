@@ -6,12 +6,13 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:11:32 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 18:13:40 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/13 18:27:34 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
+#include "../includes_fractol/keys.h"
 
 int     get_my_mouse(int x, int y, t_fractol *data)
 {
@@ -22,13 +23,16 @@ int     get_my_mouse(int x, int y, t_fractol *data)
 
     if (data_mouse == NULL)
         data_mouse = data;
-    x1 = x;
-    x2 = y;
-    data_mouse->cmouse_r = x1 / 660;
-    data_mouse->cmouse_i = x2 / 660;
-    printf("code erreur: get_my_mouse IN - SORTIE\n");
-    fractol(data_mouse);
-    printf("code erreur: get_my_mouse B - SORTIE\n");
+    if (!(strcmp(data_mouse->name, "2")))
+    {
+        x1 = x;
+        x2 = y;
+        data_mouse->cmouse_r = x1 / 660;
+        data_mouse->cmouse_i = x2 / 660;
+        printf("code erreur: get_my_mouse IN - SORTIE\n");
+        fractol(data_mouse);
+        printf("code erreur: get_my_mouse B - SORTIE\n");
+    }
     return (0);
 }
 

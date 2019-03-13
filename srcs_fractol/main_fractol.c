@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 19:52:19 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/13 20:18:14 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@ void    init_fract(t_fractol *data)
     data->x2 = 2;
     data->y1 = -2;
     data->y2 = 2;
-    data->zoom = 200;
+    data->zoom = 225;
 }
 
 void    ft_choice(t_fractol *data, double x, double y)
@@ -63,7 +63,8 @@ int     main(int argc, char **argv)
     data.name = argv[1];
     printf("data.name: %s\n", data.name);
     data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, 800, 800, "MANGE MA FRACTALE");
+    //fonction_fred(&data);
+    data.win = mlx_new_window(data.mlx, WIN_WIDTH, WIN_LENGHT, "MANGE MA FRACTALE");
     init_fract(&data);
     fractol(&data);
     ft_whats_my_buttons();

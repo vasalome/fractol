@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 19:53:02 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/13 18:21:45 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,22 +24,8 @@
 #include <string.h>
 #include <Tk/X11/X.h>
 
-# define KEY_ZOOM_IN 69
-# define KEY_ZOOM_OUT 78
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
-# define KEY_RESET 15
-# define KEY_ESC 53
-# define KEY_ITE_PLUS 22
-# define KEY_ITE_MOINS 23
-
-# define MOUSE_ZOOM_IN 5
-# define MOUSE_ZOOM_OUT 4
-
-# define WIN_WIDTH 800
-# define WIN_LENGHT 800
+# define WIN_WIDTH 900
+# define WIN_LENGHT 900
 
 typedef struct      s_fractol
 {

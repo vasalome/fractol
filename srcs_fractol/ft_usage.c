@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:14:48 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 20:19:22 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/13 13:59:41 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,7 +35,7 @@ int		ft_usage(void)
 void	ft_whats_my_buttons(void)
 {
     write(1, "\n", 1);
-	write(1, "Interaction ->            \n", 27);
+	write(1, "Notice ->                 \n", 27);
     write(1, "\n", 1);
     write(1, "Colors :                  \n", 27);
     write(1, ". C : Base orange         \n", 27);
