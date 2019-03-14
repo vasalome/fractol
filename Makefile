@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/13 18:38:15 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/14 19:08:51 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -85,7 +85,7 @@ all:
 	@mkdir -p $(OBJ_DIR)
 	@$(MAKE) $(NAME) --no-print-directory
 
-#make_libft:
+make_libft:
 	@make -C libft/
 
 #make_mlx:
@@ -93,9 +93,9 @@ all:
 #	@make re -C minilibx_macos/
 #	@echo "\n"
 
-$(NAME): $(OBJ) $(INC_DIR) #make_libft #make_mlx
+$(NAME): $(OBJ) $(INC_DIR) make_libft #make_mlx
 	@echo "$(_ORANGE)$(UNDERLINE)FRACTOL:$(R_UNDERLINE)$(_STOP)		$(BOLD)COMPILATION $(NAME): IN PROGRESS..$(_STOP)\n"
-	@$(CC) $(CFLAGS) $(OBJ) -I ./minilibx_macos/mlx.h ./minilibx_macos/libmlx.a -framework OpenGL -framework AppKit -I ./libft/includes $(INC) -o $(NAME) #EN ATTENDANT
+	@$(CC) $(CFLAGS) $(OBJ) -I ./minilibx_macos/mlx.h ./minilibx_macos/libmlx.a ./libft/libft.a -framework OpenGL -framework AppKit -I ./libft/includes $(INC) -o $(NAME) #EN ATTENDANT
 	@echo "$(_ORANGE)| ->		$(NAME):" "$(_STOP)|\033[42m     $(BOLD)L O A D I N G$(R_BOLD)     $(_STOP)|" #| pv -qL 15
 	@echo "		$(_ORANGE)$(BLINK)100%\n$(R_BLINK)$(_STOP)"
 #	@sleep 1.5
