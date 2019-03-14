@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 16:53:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 20:12:03 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/14 19:10:31 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,14 +31,19 @@ void    ft_julia(t_fractol *data, double x, double y)
 
 void    ft_burningship(t_fractol *data, double x, double y)
 {
-    data->c_r = -1.762;
-    data->c_i = -0.028; //* i;
+    data->c_r = -0.123;
+    data->c_i = 0.745;
     data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;
 }
 
 void    ft_tapis(t_fractol *data, double x, double y)
-{/*
+{
+    data->c_r = -0.772727;
+    data->c_i = 0.086364;
+    data->z_r = x / data->zoom + data->x1;
+    data->z_i = y / data->zoom + data->y1;
+    /*
     int     i;
 
     i = 0;
@@ -81,7 +86,7 @@ void    ft_tornado(t_fractol *data, double x, double y)
 
 void    ft_perso3(t_fractol *data, double x, double y)
 {
-    data->c_r = -0.780303;
+    data->c_r = -1.459091;
     data->c_i = 0;
     data->z_r = x / data->zoom + data->x1;
     data->z_i = y / data->zoom + data->y1;

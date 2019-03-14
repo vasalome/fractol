@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 18:46:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/13 18:49:30 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/14 19:10:23 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,6 @@
 int     get_key(int keycode, t_fractol *data)
 {
     static t_fractol    *data_key = NULL;
-    printf("code erreur: get_key A - ENTRER\n");
     if (data_key == NULL)
         data_key = data;
     if (keycode == KEY_ESC)
@@ -90,6 +89,5 @@ int     get_key(int keycode, t_fractol *data)
         data_key->name = "9";
     fractol(data_key);
     printf("keycode : %d\n", keycode);
-    printf("code erreur: get_key A - SORTIE\n");
     return (0);
 }

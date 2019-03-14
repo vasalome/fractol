@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 13:43:19 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/08 18:13:11 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/14 19:10:55 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,8 +15,6 @@
 
 void    fractol(t_fractol *data)
 {
-    printf("\x1b[31mcode erreur: fractol A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-
     int         iteration_max = data->nb_iter;
 
     double      image_x = (data->x2 - data->x1) * data->zoom;
@@ -56,6 +54,5 @@ void    fractol(t_fractol *data)
         }
         x++;
     }
-    printf("\x1b[31mcode erreur: fractol B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-    printf("\x1b[31mcode erreur: 4emeFRACTAL - data->cmouse_r: %f - data->cmouse_i: %f\n\x1b[0m", data->cmouse_r, data->cmouse_i);
+printf("\x1b[31mdata.name:\x1b[0m %s ; \x1b[31mnb_iter:\x1b[0m %f ; \x1b[31mdata.cmouse_r:\x1b[0m %f ; \x1b[31mdata.cmouse_i:\x1b[0m %f\n", data->name, data->nb_iter, data->cmouse_r, data->cmouse_i);
 }

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/13 18:21:45 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/14 18:52:54 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,7 +50,7 @@ typedef struct      s_fractol
         int         color;
 }                   t_fractol;
 
-int		ft_usage(void);
+int	ft_usage(void);
 void	ft_whats_my_buttons(void);
 void    init_fract(t_fractol *data);
 int     color_rgb_get_key(int i, t_fractol *data, double z_i);
