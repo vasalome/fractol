@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 13:43:19 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 19:10:55 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 20:18:38 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,17 +37,15 @@ void    fractol(t_fractol *data)
                 data->tmp = data->z_r;
                 data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
                 data->z_i = 2 * data->z_i * data->tmp + data->c_i;
-
-                
-                //data->tmp = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r; TEST burningship
-                //data->z_i = fabs(2 * data->z_r * data->z_i) + data->c_r;
-                //data->z_r = data->tmp;
-
-
                 i++;
             }
             if (i == iteration_max)
-                mlx_pixel_put(data->mlx, data->win, x, y, 0);
+            {
+                if(data->color_in % 2 == 1)
+                    mlx_pixel_put(data->mlx, data->win, x, y, 0);
+                if(data->color_in % 2 == 0)
+                    mlx_pixel_put(data->mlx, data->win, x, y, 0xFFFFFF);
+            }
             else
                 mlx_pixel_put(data->mlx, data->win, x, y, color_rgb_get_key(i, data, data->z_i));
             y++;

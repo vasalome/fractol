@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:14:48 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 16:22:28 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 19:01:02 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,13 +20,13 @@ int		ft_usage(void)
     write(1, "\n", 1);
     write(1, "Exemple : ./fractol 4     \n", 27);
     write(1, ". 1 : Mandelbrot          \n", 27);
-    write(1, ". 2 : Julia               \n", 27);
-    write(1, ". 3 : Burningship         \n", 27);
-    write(1, ". 4 : Tapis Sierpinski    \n", 27);
-    write(1, ". 5 : Fractale needname   \n", 27);
+    write(1, ". 2 : Julia (Move)        \n", 27);
+    write(1, ". 3 : Douady Rabbit       \n", 27);
+    write(1, ". 4 : Fractale Deepturn   \n", 27);
+    write(1, ". 5 : Fractale Needname   \n", 27);
     write(1, ". 6 : Fractale Portail    \n", 27);
     write(1, ". 7 : Fractale Tornado    \n", 27);
-    write(1, ". 8 : Fractale Forest   \n", 27);
+    write(1, ". 8 : Fractale Forest     \n", 27);
     write(1, ". 9 : Fractale Nenufar    \n", 27);
     write(1, "\n", 1);
 	return (64);
@@ -35,13 +35,14 @@ int		ft_usage(void)
 void	ft_whats_my_buttons(void)
 {
     write(1, "\n", 1);
-	write(1, "Notice ->                 \n", 27);
+	write(1, "/ NOTICE / ->             \n", 27);
     write(1, "\n", 1);
     write(1, "Colors :                  \n", 27);
     write(1, ". C : Base orange         \n", 27);
     write(1, ". V : Base verte          \n", 27);
     write(1, ". B : Base bleue          \n", 27);
     write(1, ". N : Surprise            \n", 27);
+    write(1, ". M : Change color inside \n", 27);
     write(1, "\n", 1);
     write(1, "Options Zoom :            \n", 27);
     write(1, ". Z - Souris 1 : Zoom In  \n", 27);

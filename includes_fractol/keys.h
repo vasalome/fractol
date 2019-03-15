@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/13 19:03:01 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 18:38:34 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,6 +29,7 @@
 # define KEY_V 9
 # define KEY_B 11
 # define KEY_N 45
+# define KEY_M 46
 
 # define KEY_ITE_MORE 69
 # define KEY_ITE_LESS 78

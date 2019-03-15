@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 19:41:41 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 19:02:17 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,11 +17,13 @@ void    init_fract(t_fractol *data)
 {
     data->nb_iter = 100;
     data->color = 1;
+    data->color_in = 1;
     data->x1 = -2;
     data->x2 = 2;
     data->y1 = -2;
     data->y2 = 2;
     data->zoom = 225;
+    data->zoom_info = 0;
 }
 
 void    ft_choice(t_fractol *data, double x, double y)
@@ -31,17 +33,17 @@ void    ft_choice(t_fractol *data, double x, double y)
     else if (!(ft_strcmp(data->name, "2")))
         ft_julia(data, x, y);
     else if (!(ft_strcmp(data->name, "3")))
-        ft_burningship(data, x, y);
+        ft_douadyrabbit(data, x, y);
     else if (!(ft_strcmp(data->name, "4")))
-        ft_tapis(data, x, y);
+        ft_deepturn(data, x, y);
     else if (!(ft_strcmp(data->name, "5")))
-        ft_triangle(data, x, y);
+        ft_needname(data, x, y);
     else if (!(ft_strcmp(data->name, "6")))
         ft_portail(data, x, y);
     else if (!(ft_strcmp(data->name, "7")))
         ft_tornado(data, x, y);
     else if (!(ft_strcmp(data->name, "8")))
-        ft_perso3(data, x, y);
+        ft_virtualforest(data, x, y);
     else if (!(ft_strcmp(data->name, "9")))
         ft_nenufar(data, x, y);
     else

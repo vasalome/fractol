@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 18:46:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/14 19:10:23 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/15 19:21:30 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,10 +21,12 @@ int     get_key(int keycode, t_fractol *data)
         data_key = data;
     if (keycode == KEY_ESC)
         exit(0);
+    ///////////////////////
     else if (keycode == KEY_ITE_MORE)
         data_key->nb_iter += 20;
     else if (keycode == KEY_ITE_LESS)
         data_key->nb_iter -= 20;
+    ///////////////////////
     else if (keycode == KEY_UP)
     {
         data_key->y1 += 0.001 * data_key->zoom;
@@ -45,6 +47,7 @@ int     get_key(int keycode, t_fractol *data)
         data_key->x1 -= 0.001 * data_key->zoom;
         data_key->x2 -= 0.001 * data_key->zoom;
     }
+    ///////////////////////
     else if (keycode == KEY_C)
         data_key->color = 1;
     else if (keycode == KEY_V)
@@ -53,22 +56,32 @@ int     get_key(int keycode, t_fractol *data)
         data_key->color = 3;
     else if (keycode == KEY_N)
         data_key->color = 4;
+    else if (keycode == KEY_M)
+        data_key->color_in++;
+    ///////////////////////
     else if (keycode == KEY_RESET)
         init_fract(data_key);
+    ///////////////////////
     else if (keycode == KEY_ZOOM_IN)
     {
         data_key->x1 = (0 / data_key->zoom + data_key->x1) - (0 / (data_key->zoom * 1.3));
         data_key->y1 = (0 / data_key->zoom + data_key->y1) - (0 / (data_key->zoom * 1.3));
         data_key->zoom *= 1.3;
         data_key->nb_iter += 10;
+        data_key->zoom_info++;
     }
     else if (keycode == KEY_ZOOM_OUT)
-    { // Maybe : Ajouter un blocage pour empecher le zoom > 0 sinon segfault
-        data_key->x1 = (0 / data_key->zoom + data_key->x1) - (0 / (data_key->zoom / 1.3));
-        data_key->y1 = (0 / data_key->zoom + data_key->y1) - (0 / (data_key->zoom / 1.3));
-        data_key->zoom /= 1.3;
-        data_key->nb_iter -= 10;
+    {
+        if(data_key->zoom_info > 0)
+        {
+            data_key->x1 = (0 / data_key->zoom + data_key->x1) - (0 / (data_key->zoom / 1.3));
+            data_key->y1 = (0 / data_key->zoom + data_key->y1) - (0 / (data_key->zoom / 1.3));
+            data_key->zoom /= 1.3;
+            data_key->nb_iter -= 10;
+            data_key->zoom_info--;
+        }
     }
+    ///////////////////////
     else if (keycode == KEY_1)
         data_key->name = "1";
     else if (keycode == KEY_2)

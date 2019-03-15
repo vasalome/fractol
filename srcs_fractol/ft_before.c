@@ -1,7 +1,7 @@
+#include "../includes_fractol/fractol.h"
+
 void    fractol(t_fractol *data)
 {
-//////    printf("\x1b[31mcode erreur: fractol A - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-
     int         iteration_max = data->nb_iter;
 
     double      image_x = (data->x2 - data->x1) * data->zoom;
@@ -24,13 +24,6 @@ void    fractol(t_fractol *data)
                 data->tmp = data->z_r;
                 data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
                 data->z_i = 2 * data->z_i * data->tmp + data->c_i;
-
-                
-                //data->tmp = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r; TEST burningship
-                //data->z_i = fabs(2 * data->z_r * data->z_i) + data->c_r;
-                //data->z_r = data->tmp;
-
-
                 i++;
             }
             if (i == iteration_max)
@@ -41,6 +34,5 @@ void    fractol(t_fractol *data)
         }
         x++;
     }
-//////    printf("\x1b[31mcode erreur: fractol B - nb_iter: %f - color: %d\n\x1b[0m", data->nb_iter, data->color);
-//////    printf("\x1b[31mcode erreur: 4emeFRACTAL - data->cmouse_r: %f - data->cmouse_i: %f\n\x1b[0m", data->cmouse_r, data->cmouse_i);
+printf("\x1b[31mdata.name:\x1b[0m %s ; \x1b[31mnb_iter:\x1b[0m %f ; \x1b[31mdata.cmouse_r:\x1b[0m %f ; \x1b[31mdata.cmouse_i:\x1b[0m %f\n", data->name, data->nb_iter, data->cmouse_r, data->cmouse_i);
 }
