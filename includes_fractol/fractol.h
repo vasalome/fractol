@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 19:01:57 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/19 20:45:16 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,11 +64,12 @@ void    ft_mandelbrot(t_fractol *data, double x, double y);
 void    ft_julia(t_fractol *data, double x, double y);
 void    ft_douadyrabbit(t_fractol *data, double x, double y);
 void    ft_deepturn(t_fractol *data, double x, double y);
-void    ft_needname(t_fractol *data, double x, double y);
+void    ft_burningship(t_fractol *data, double x, double y);
 void    ft_portail(t_fractol *data, double x, double y);
 void    ft_tornado(t_fractol *data, double x, double y);
 void    ft_virtualforest(t_fractol *data, double x, double y);
 void    ft_nenufar(t_fractol *data, double x, double y);
+void    ft_needname(t_fractol *data, double x, double y);
 void    ft_choice(t_fractol *data, double x, double y);
 
 int     get_key(int keycode, t_fractol *data);

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 13:43:19 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 20:18:38 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/19 20:58:20 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,9 +34,18 @@ void    fractol(t_fractol *data)
             i = 0;
             while (((data->z_r * data->z_r + data->z_i * data->z_i)) < 4 && (i < iteration_max))
             {
-                data->tmp = data->z_r;
-                data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
-                data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+                if (!(ft_strcmp(data->name, "5")))
+                {
+                    data->tmp = data->z_r;
+                    data->z_r = fabs(data->z_r * data->z_r - data->z_i * data->z_i + data->c_r);
+                    data->z_i = fabs(2 * data->z_i * data->tmp + data->c_i);
+                }
+                else
+                {
+                    data->tmp = data->z_r;
+                    data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
+                    data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+                }
                 i++;
             }
             if (i == iteration_max)

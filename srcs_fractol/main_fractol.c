@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 19:02:17 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/19 20:45:14 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,7 +37,7 @@ void    ft_choice(t_fractol *data, double x, double y)
     else if (!(ft_strcmp(data->name, "4")))
         ft_deepturn(data, x, y);
     else if (!(ft_strcmp(data->name, "5")))
-        ft_needname(data, x, y);
+        ft_burningship(data, x, y);
     else if (!(ft_strcmp(data->name, "6")))
         ft_portail(data, x, y);
     else if (!(ft_strcmp(data->name, "7")))
@@ -46,6 +46,8 @@ void    ft_choice(t_fractol *data, double x, double y)
         ft_virtualforest(data, x, y);
     else if (!(ft_strcmp(data->name, "9")))
         ft_nenufar(data, x, y);
+    else if (!(ft_strcmp(data->name, "0")))
+        ft_needname(data, x, y);
     else
     {
         ft_usage();

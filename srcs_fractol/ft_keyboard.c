@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 18:46:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/15 19:21:30 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/19 20:45:15 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -100,6 +100,8 @@ int     get_key(int keycode, t_fractol *data)
         data_key->name = "8";
     else if (keycode == KEY_9)
         data_key->name = "9";
+    else if (keycode == KEY_0)
+        data_key->name = "0";
     fractol(data_key);
     printf("keycode : %d\n", keycode);
     return (0);
