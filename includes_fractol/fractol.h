@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/19 20:45:16 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 21:10:37 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,6 +53,22 @@ typedef struct      s_fractol
         int         image;
 }                   t_fractol;
 
+typedef struct  s_thread
+{
+    pthread_t   fred;
+
+}               t_thread;
+
+typedef struct bite
+{
+        t_fractol *data;
+        double x1;
+        double x2;
+        double y1;
+        double y2;
+}               t_bite;
+
+
 int	ft_usage(void);
 void	ft_whats_my_buttons(void);
 void    init_fract(t_fractol *data);
@@ -74,6 +90,6 @@ void    ft_choice(t_fractol *data, double x, double y);
 
 int     get_key(int keycode, t_fractol *data);
 int     get_my_mouse(int x, int y, t_fractol *data);
-int     get_key_mouse(int mousecode, int x, int y, t_fractol *data);
-
+int     get_key_mouse(int m_code, int x, int y, t_fractol *data);
+int	mouse_hook(int button, int x, int y, t_fractol *data);
 #endif

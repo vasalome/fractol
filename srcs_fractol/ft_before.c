@@ -1,3 +1,16 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   ft_before.c                                      .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2019/01/11 13:43:19 by vasalome     #+#   ##    ##    #+#       */
+/*   Updated: 2019/03/20 21:13:40 by vasalome    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "../includes_fractol/fractol.h"
 
 void    fractol(t_fractol *data)
@@ -21,13 +34,27 @@ void    fractol(t_fractol *data)
             i = 0;
             while (((data->z_r * data->z_r + data->z_i * data->z_i)) < 4 && (i < iteration_max))
             {
-                data->tmp = data->z_r;
-                data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
-                data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+                if (!(ft_strcmp(data->name, "5")))
+                {
+                    data->tmp = data->z_r;
+                    data->z_r = fabs(data->z_r * data->z_r - data->z_i * data->z_i + data->c_r);
+                    data->z_i = fabs(2 * data->z_i * data->tmp + data->c_i);
+                }
+                else
+                {
+                    data->tmp = data->z_r;
+                    data->z_r = data->z_r * data->z_r - data->z_i * data->z_i + data->c_r;
+                    data->z_i = 2 * data->z_i * data->tmp + data->c_i;
+                }
                 i++;
             }
             if (i == iteration_max)
-                mlx_pixel_put(data->mlx, data->win, x, y, 0);
+            {
+                if(data->color_in % 2 == 1)
+                    mlx_pixel_put(data->mlx, data->win, x, y, 0);
+                if(data->color_in % 2 == 0)
+                    mlx_pixel_put(data->mlx, data->win, x, y, 0xFFFFFF);
+            }
             else
                 mlx_pixel_put(data->mlx, data->win, x, y, color_rgb_get_key(i, data, data->z_i));
             y++;

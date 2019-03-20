@@ -109,15 +109,15 @@ pthread_t   fred;
 i = 0;
 while (i <= 9)
 {
-    pthread_create(&fred, NULL, ft_winfred_1(0, 300, 0, 300);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_2(0, 300, 301, 600);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_3(0, 300, 601, 900);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_4(300, 600, 0, 300);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_5(300, 600, 301, 600);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_6(300, 600, 601, 900);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_7(600, 900, 0, 300);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_8(600, 900, 301, 600);, NULL);
-    pthread_create(&fred, NULL, ft_winfred_9(600, 900, 601, 900);, NULL);
+    pthread_create(&fred, NULL, ft_winfred_1(0, 300, 0, 300), NULL);
+    pthread_create(&fred, NULL, ft_winfred_2(0, 300, 301, 600), NULL);
+    pthread_create(&fred, NULL, ft_winfred_3(0, 300, 601, 900), NULL);
+    pthread_create(&fred, NULL, ft_winfred_4(300, 600, 0, 300), NULL);
+    pthread_create(&fred, NULL, ft_winfred_5(300, 600, 301, 600), NULL);
+    pthread_create(&fred, NULL, ft_winfred_6(300, 600, 601, 900) , NULL);
+    pthread_create(&fred, NULL, ft_winfred_7(600, 900, 0, 300) , NULL);
+    pthread_create(&fred, NULL, ft_winfred_8(600, 900, 301, 600), NULL);
+    pthread_create(&fred, NULL, ft_winfred_9(600, 900, 601, 900), NULL);
     i++;
 }
 

@@ -6,14 +6,14 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 13:43:19 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/19 20:58:20 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 21:12:26 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
 
-void    fractol(t_fractol *data)
+void    *ft_winfred(t_bite *couilles)
 {
     int         iteration_max = data->nb_iter;
 
@@ -22,14 +22,16 @@ void    fractol(t_fractol *data)
     
     double      i = 0;
 
-    double      x = 0;
-    double      y = 0;
-    mlx_clear_window(data->mlx, data->win);
-    while (x < image_x)
+    double      x = x1;
+    double      y = y1;
+
+    while ((x < x2) && (x2 - x1) < image_x)
     {
+        printf("DODU\n");
         y = 0;
-        while (y < image_y)
+        while ((y < y2) && (y2 - y1) < image_y)
         {
+            printf("COCHON\n");
             ft_choice(data, x, y);
             i = 0;
             while (((data->z_r * data->z_r + data->z_i * data->z_i)) < 4 && (i < iteration_max))
@@ -61,5 +63,38 @@ void    fractol(t_fractol *data)
         }
         x++;
     }
-printf("\x1b[31mdata.name:\x1b[0m %s ; \x1b[31mnb_iter:\x1b[0m %f ; \x1b[31mdata.cmouse_r:\x1b[0m %f ; \x1b[31mdata.cmouse_i:\x1b[0m %f\n", data->name, data->nb_iter, data->cmouse_r, data->cmouse_i);
+    printf("\x1b[31mdata.name:\x1b[0m %s ; \x1b[31mnb_iter:\x1b[0m %f ; \x1b[31mdata.cmouse_r:\x1b[0m %f ; \x1b[31mdata.cmouse_i:\x1b[0m %f\n", data->name, data->nb_iter, data->cmouse_r, data->cmouse_i);
+    return (0);
+}
+
+void    fractol(t_fractol *data)
+{
+    pthread_t   fred1;
+    //pthread_t   fred2;
+    //pthread_t   fred3;
+    //pthread_t   fred4;
+    //pthread_t   fred5;
+    //pthread_t   fred6;
+    //pthread_t   fred7;
+    //pthread_t   fred8;
+    //pthread_t   fred9;
+    t_bite      *jojo;
+
+    jojo = malloc(sizeof(t_bite));
+    mlx_clear_window(data->mlx, data->win);
+    pthread_create(&fred1, NULL, ft_winfred, jojo);
+    printf("bite\n");
+    //pthread_create(&fred2, NULL, ft_winfred(0, 300, 301, 600, data), NULL);
+    printf("dans\n");
+    //pthread_create(&fred3, NULL, ft_winfred(0, 300, 601, 900, data), NULL);
+    //pthread_create(&fred4, NULL, ft_winfred(300, 600, 0, 300, data), NULL);
+    //pthread_create(&fred5, NULL, ft_winfred(300, 600, 301, 600, data), NULL);
+    //pthread_create(&fred6, NULL, ft_winfred(300, 600, 601, 900, data) , NULL);
+    //pthread_create(&fred7, NULL, ft_winfred(600, 900, 0, 300, data) , NULL);
+    //pthread_create(&fred8, NULL, ft_winfred(600, 900, 301, 600, data), NULL);
+    //pthread_create(&fred9, NULL, ft_winfred(600, 900, 601, 900, data), NULL);
+    printf("MAMAN\n");
+    pthread_join(fred1, NULL);
+    printf("papa aime ca\n");
+    //pthread_join(fred2, NULL);
 }

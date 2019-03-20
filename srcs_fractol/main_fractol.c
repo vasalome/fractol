@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/19 20:45:14 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/20 17:44:39 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,7 +75,7 @@ int     main(int argc, char **argv)
     //get_key_mouse(0, 0, 0, &data);
     get_my_mouse(0, 0, &data);
     mlx_hook(data.win, 17, 0, red_cross, (void *)0);
-//    mlx_mouse_hook(0, mouse_hook, &data);
+    mlx_mouse_hook(data.win, mouse_hook, &data);
     mlx_hook(data.win, MotionNotify, PointerMotionMask, get_my_mouse, (void *)0);
     mlx_hook(data.win, 2, 0, get_key, (void *)data.win);
 
