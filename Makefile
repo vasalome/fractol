@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/26 17:27:09 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/14 19:08:51 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/22 13:24:28 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -33,6 +33,7 @@ SRCS		=	main_fractol.c
 SRCS		+=	ft_usage.c
 SRCS		+=	ft_dothemath.c
 SRCS		+=	ft_choice1.c
+SRCS		+=	ft_choice2.c
 SRCS		+=	ft_colors.c
 SRCS		+=	ft_keyboard.c
 SRCS		+=	ft_mouse.c
