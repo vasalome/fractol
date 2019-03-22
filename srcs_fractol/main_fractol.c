@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 13:37:08 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 20:44:28 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,6 +64,10 @@ int		main(int argc, char **argv)
 		ft_usage();
 		exit(0);
 	}
+	///////////
+	//data.img = mlx_new_image(data.mlx, WIN_WIDTH, WIN_LENGHT);
+	//data.img_ptr = mlx_get_data_addr(data.img, &data.bpp, &data.sl, &data.end);
+	///////////
 	data.name = argv[1];
 	data.mlx = mlx_init();
 	//fonction_fred(&data);

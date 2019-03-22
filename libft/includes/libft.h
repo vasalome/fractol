@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 14:32:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 14:26:03 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 19:12:27 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,5 +29,6 @@ typedef struct		s_list
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
+void				*ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif

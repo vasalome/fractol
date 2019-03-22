@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/20 21:10:37 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/22 22:18:05 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,8 +50,22 @@ typedef struct      s_fractol
         int         zoom_info;
         int         color;
         int         color_in;
-        int         image;
+        int         *image;
+        int     bpp;
+        void    *img;
+        void    *img_ptr;
+        int     end;
+        int     sl;
 }                   t_fractol;
+
+typedef struct  s_image
+{
+        int     bpp;
+        void    *img;
+        void    *img_ptr;
+        int     end;
+        int     sl;
+}               t_image;
 
 typedef struct  s_thread
 {
@@ -59,14 +73,14 @@ typedef struct  s_thread
 
 }               t_thread;
 
-typedef struct bite
+typedef struct s_freddy
 {
         t_fractol *data;
         double x1;
         double x2;
         double y1;
         double y2;
-}               t_bite;
+}               t_freddy;
 
 
 int	ft_usage(void);

@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 11:42:11 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/03/22 14:26:15 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/03/22 19:11:05 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -36,6 +36,7 @@ LIB_DIR		=	./lib/
 SRCS		=	ft_memset.c
 SRCS		=	ft_bzero.c
 SRCS		+=	ft_strcmp.c
+SRCS		+=	ft_memcpy.c
 
 #	Objects:
 OBJ			=	$(addprefix $(OBJ_DIR),$(SRCS:.c=.o))
