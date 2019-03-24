@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/22 22:18:05 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/03/24 14:23:24 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,6 +48,8 @@ typedef struct      s_fractol
         double      tmp;
         intmax_t    zoom;
         int         zoom_info;
+        double	image_x;
+        double	image_y;
         int         color;
         int         color_in;
         int         *image;
