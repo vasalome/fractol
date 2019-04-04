@@ -39,7 +39,6 @@ Autres     :
 - SPACE : Bloquer Julia(2)
 
 
-Quelques sources :
-- http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
-- http://www.relativitybook.com/CoolStuff/julia_set.html
-- https://forum.intra.42.fr/topics/501/messages?page=1
+>Quelques sources :
+>- http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
+>- http://www.relativitybook.com/CoolStuff/julia_set.html
