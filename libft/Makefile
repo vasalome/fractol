@@ -6,7 +6,7 @@
 #    By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 11:42:11 by vasalome     #+#   ##    ##    #+#        #
-#    Updated: 2019/04/02 18:39:19 by vasalome    ###    #+. /#+    ###.fr      #
+#    Updated: 2019/04/04 14:39:39 by vasalome    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -43,6 +43,8 @@ SRCS		+=	ft_strnew.c
 SRCS		+=	ft_strrev.c
 SRCS		+=	ft_strcpy.c
 SRCS		+=	ft_strlen.c
+SRCS		+=	ft_pow.c
+SRCS		+=	ft_dtoa.c
 
 #	Objects:
 OBJ			=	$(addprefix $(OBJ_DIR),$(SRCS:.c=.o))

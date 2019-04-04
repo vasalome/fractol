@@ -6,39 +6,12 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/02 22:37:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 23:26:13 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 15:37:31 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes_fractol/fractol.h"
-
-char	*ft_dtoa(double n, int precision)
-{
-	char	*s;
-	long	tmp;
-	long	t;
-	int		length;
-
-	if (!precision)
-		return (ft_itoa((int)n));
-	tmp = (n * pow(10, precision));
-	t = (tmp < 0) ? -tmp : tmp;
-	length = (n <= 0 ? 3 : 2);
-	while (tmp && ++length)
-		tmp /= 10;
-	if (!(s = (char *)malloc(sizeof(char) * length)))
-		return (NULL);
-	s[--length] = '\0';
-	if (tmp <= 0)
-		s[0] = (tmp < 0 ? '-' : '0');
-	while (t)
-	{
-		s[--length] = (!precision--) ? '.' : t % 10 + '0';
-		t /= (precision + 1) ? 10 : 1;
-	}
-	return (s);
-}
 
 void		infos_string(t_fractol *data, t_infos *string)
 {
@@ -63,14 +36,11 @@ void		infos_string(t_fractol *data, t_infos *string)
 void		infos(t_fractol *data)
 {
 	t_infos		string;
-	double		zoomy;
 
-	zoomy = ((WIDTH / 2) * data->nzoom / WIDTH + data->x1) - \
-						(6 * data->zoom_info);
 	string.s1 = ft_dtoa(data->c_r, 5);
 	string.s2 = ft_dtoa(data->c_i, 5);
 	string.s3 = ft_dtoa(data->nb_iter, 0);
-	string.s4 = ft_dtoa(zoomy, 2);
+	string.s4 = ft_dtoa(data->zoom_info * 100, 0);
 	if (data->hide % 2 == 1)
 		infos_string(data, &string);
 	free(string.s1);

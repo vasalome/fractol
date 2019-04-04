@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/11 14:14:48 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 22:37:56 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 13:52:31 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ int		ft_usage(void)
 	write(1, ". 3 : Douady Rabbit       \n", 27);
 	write(1, ". 4 : Fractale Deepturn   \n", 27);
 	write(1, ". 5 : Fractale Burningship\n", 27);
-	write(1, ". 6 : Portail BlackGate ? \n", 27);
+	write(1, ". 6 : Portail BlackGate   \n", 27);
 	write(1, ". 7 : Fractale Tornado    \n", 27);
 	write(1, ". 8 : Fractale Forest     \n", 27);
 	write(1, ". 9 : Fractale Nenufar    \n", 27);

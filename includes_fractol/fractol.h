@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 23:27:21 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 16:44:24 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <Tk/X11/X.h>
+# include <pthread.h>
+# include <string.h>
 
 # define WIDTH 700.0
 # define HEIGHT 700.0

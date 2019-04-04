@@ -7,7 +7,7 @@
 - 3 : Douady Rabbit       
 - 4 : Fractale Deepturn   
 - 5 : Fractale Burningship
-- 6 : Portail BlackGate ? 
+- 6 : Portail BlackGate
 - 7 : Fractale Tornado    
 - 8 : Fractale Forest     
 - 9 : Fractale Nenufar    

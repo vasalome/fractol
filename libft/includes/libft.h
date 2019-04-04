@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 14:32:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 18:38:59 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/04 14:22:41 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,5 +36,7 @@ char				*ft_strnew(size_t size);
 char				*ft_strrev(char *str);
 char				*ft_strcpy(char *dest, const char *src);
 size_t				ft_strlen(const char *str);
+int					ft_pow(int nb, int power);
+char				*ft_dtoa(double nb, unsigned int precision);
 
 #endif
