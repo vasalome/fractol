@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 18:46:35 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 21:22:24 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:20:24 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,7 +31,7 @@ static void		key_color(int keycode, t_fractol *data_key)
 	else if (keycode == KEY_SPACE)
 		data_key->stop_move++;
 	else if (keycode == KEY_H)
-		data_key->hide++;
+		data_key->hide_txt++;
 }
 
 static void		key_choose(int keycode, t_fractol *data_key)
@@ -60,25 +60,27 @@ static void		key_choose(int keycode, t_fractol *data_key)
 
 static void		key_zoom(int keycode, t_fractol *d_k)
 {
-	if (keycode == KEY_ZOOM_IN)
+	if (keycode == KEY_Z)
 	{
 		d_k->nzoom /= 2.0;
 		d_k->x1 = (WIDTH / 2) * d_k->nzoom / WIDTH + d_k->x1;
 		d_k->y1 = (HEIGHT / 2) * d_k->nzoom / HEIGHT + d_k->y1;
 		d_k->nb_iter += 20;
 		d_k->zoom_info = d_k->zoom_info / 2;
+		d_k->zoom_txt = d_k->zoom_txt * 2;
 	}
-	else if (keycode == KEY_ZOOM_OUT)
+	else if (keycode == KEY_X)
 	{
-		if (d_k->zoom_info <= 0.5)
+		if (d_k->zoom_info <= 1)
 		{
 			d_k->nzoom *= 2.0;
-			d_k->x1 = ((WIDTH / 2) * d_k->nzoom / WIDTH + d_k->x1) -\
+			d_k->x1 = ((WIDTH / 2) * d_k->nzoom / WIDTH + d_k->x1) - \
 						(6 * d_k->zoom_info);
 			d_k->y1 = ((HEIGHT / 2) * d_k->nzoom / HEIGHT + d_k->y1) - \
 						(6 * d_k->zoom_info);
 			d_k->nb_iter -= 20;
 			d_k->zoom_info = d_k->zoom_info * 2;
+			d_k->zoom_txt = d_k->zoom_txt / 2;
 		}
 	}
 }

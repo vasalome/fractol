@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/10 13:11:32 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:27:12 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:20:29 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,11 +51,12 @@ int		get_key_mouse(int m, int x, int y, t_fractol *data)
 		data->x1 = x * data->nzoom / WIDTH + data->x1;
 		data->y1 = y * data->nzoom / HEIGHT + data->y1;
 		data->nb_iter += 20;
-		data->zoom_info = data->zoom_info * 2;
+		data->zoom_info = data->zoom_info / 2;
+		data->zoom_txt = data->zoom_txt * 2;
 	}
 	else if (m == 5 || m == 2)
 	{
-		if (data->zoom_info >= 1)
+		if (data->zoom_info <= 1)
 		{
 			data->nzoom *= 2.0;
 			data->x1 = ((WIDTH / 2) * data->nzoom / WIDTH + data->x1) - \
@@ -63,7 +64,8 @@ int		get_key_mouse(int m, int x, int y, t_fractol *data)
 			data->y1 = ((HEIGHT / 2) * data->nzoom / HEIGHT + data->y1) - \
 						(6 * data->zoom_info);
 			data->nb_iter -= 20;
-			data->zoom_info = data->zoom_info / 2;
+			data->zoom_info = data->zoom_info * 2;
+			data->zoom_txt = data->zoom_txt / 2;
 		}
 	}
 	fractol(data);

@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 16:25:04 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 21:41:32 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:15:59 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,8 @@ void	init_fract(t_fractol *data)
 	data->nzoom = 4.0;
 	data->zoom_info = 1.0;
 	data->stop_move = 1;
-	data->hide = 1;
+	data->hide_txt = 1;
+	data->zoom_txt = 1.0;
 }
 
 void	ft_choice(t_fractol *data, double x, double y)

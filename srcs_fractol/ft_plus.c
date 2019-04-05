@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/04/02 22:37:24 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 15:37:31 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:16:51 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,8 +40,8 @@ void		infos(t_fractol *data)
 	string.s1 = ft_dtoa(data->c_r, 5);
 	string.s2 = ft_dtoa(data->c_i, 5);
 	string.s3 = ft_dtoa(data->nb_iter, 0);
-	string.s4 = ft_dtoa(data->zoom_info * 100, 0);
-	if (data->hide % 2 == 1)
+	string.s4 = ft_dtoa(data->zoom_txt * 100, 0);
+	if (data->hide_txt % 2 == 1)
 		infos_string(data, &string);
 	free(string.s1);
 	free(string.s2);

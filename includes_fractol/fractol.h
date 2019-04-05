@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/04 16:44:24 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:11:32 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,7 @@ typedef struct		s_fractol
 	double			tmp;
 	double			nzoom;
 	double			zoom_info;
+	double			zoom_txt;
 	double			image_x;
 	double			image_y;
 	int				color;
@@ -65,7 +66,7 @@ typedef struct		s_fractol
 	int				bpp;
 	int				sl;
 	int				end;
-	int				hide;
+	int				hide_txt;
 }					t_fractol;
 
 int					ft_usage(void);

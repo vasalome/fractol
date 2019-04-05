@@ -6,7 +6,7 @@
 /*   By: vasalome <vasalome@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/08 17:49:47 by vasalome     #+#   ##    ##    #+#       */
-/*   Updated: 2019/04/02 18:47:05 by vasalome    ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/04/05 20:15:35 by vasalome    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,8 +22,8 @@
 # define KEY_RESET 15
 # define KEY_ESC 53
 
-# define KEY_ZOOM_IN 6
-# define KEY_ZOOM_OUT 7
+# define KEY_Z 6
+# define KEY_X 7
 
 # define KEY_C 8
 # define KEY_V 9
